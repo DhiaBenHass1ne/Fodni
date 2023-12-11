@@ -4,14 +4,18 @@ from django.contrib.auth.models import User
 
 
 class RegisterForm(UserCreationForm):
-    email = forms.EmailField(required=True)
     first_name = forms.CharField(required=True)
     last_name= forms.CharField(required=True)
+    state=forms.CharField(required=True)
+    city=forms.CharField(required=True)
+    phone=forms.CharField(required=True)
+    is_provider=forms.ChoiceField(required=True, widget=forms.RadioSelect, choices={("provider","provider"),("client","client")})
+    
     
 
     class Meta:
         model = User
-        fields = ["username","email","first_name","last_name","password1","password2"]
+        fields = ["first_name","last_name","username","email","state","city","phone","password1","password2","is_provider"]
 
 
 

@@ -3,7 +3,7 @@
 }
 
 body{
-    background-image: url("/main/templates/static/assets/home/background.svg");
+    background-image: url("{% static '/assets/home/background.svg' %}");
     background-size: cover;
     background-repeat: repeat;
 }
