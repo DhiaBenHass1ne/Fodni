@@ -1,5 +1,305 @@
-{% extends 'main/base.html'%}
-{% block title %}Home Page{%endblock%}
-{% block content %}
-<h1>Home Page!</h1>
-{%endblock%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/home.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    
+    <title>Document</title>	
+</head>
+
+<body>
+
+    <div class="container-fluid main">
+        <nav class="navbar navbar-expand-lg fixed-top  glass">
+            <div class="container-fluid">
+                <a class="navbar-brand ps-3" href="#"><img src="{% static '/assets/home/fodni (2).png' %}" alt="logo" width="100"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="container">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav justify-content-center">
+                            <li class="nav-item">
+                                <a class="nav-link inactive-link fw-bolder fs-4" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link inactive-link fw-bolder fs-4" href="#">Hire</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link inactive-link fw-bolder fs-4" href="#">Work</a>
+                            </li>
+                            <li class="nav-item inactive-link" fw-bolder>
+                                <a class="nav-link inactive-link fw-bolder fs-4" href="#">About Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-outline-success me-3 button-outline" type="submit">Register</button>
+                    <button class="btn btn-outline-success button-outline" type="submit">Login</button>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid first mt-5">
+            <div class="container">
+                <div class="row pt-5">
+                    <div class="col">
+                        <img src="{% static '/assets/home/fodni (2).png' %}" alt="logo" width="200px">
+                        <h4 class="mt-4 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea sequi
+                            hic inventore. Quod illum eos enim tenetur nesciunt corporis, sapiente accusamus aut sint
+                            similique ullam iusto, quaerat laboriosam nam est.</h4>
+                        <form class="d-flex mt-5 align-items-center d-sm-block d-md-block" role="search">
+                            <label for="search-home" class="d-lg-block col-3 text-light">Look for a service:</label>
+                            <input class="form-control me-2" type="search" placeholder="Plumbing,Electricity,Moving..."
+                                aria-label="Search" name="search-home">
+                            <button class="btn btn-outline-success button-outline btn-light" type="submit"><i
+                                    class="bi bi-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="col text-center">
+                        <object data="{% static '/assets/home/people.svg' %}" width="600px"
+                            class=" mt-5 me-5 d-sm-none d-md-block d-none d-sm-block"></object>
+                    </div>
+                    <div class="row mt-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="100" fill="#F7882F"
+                            class="bi bi-arrow-bar-down mt-5" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid first mt-5">
+            <div class="container">
+                <div class="row m-5">
+                    <h1 class="display-1 text-center text-light inactive-link"> Looking For Service ?</h1>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <h1 class="display-5 text-center text-light">Post A Job</h1>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                            <div class="col">
+                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                            </div>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                            <div class="col">
+                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                            </div>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                            <div class="col">
+                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <h1 class="display-5 text-center text-light">Post A Job</h1>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col-2">
+                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                            </div>
+                            <div class="col-10">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col-2">
+                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                            </div>
+                            <div class="col-10">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col-2">
+                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                            </div>
+                            <div class="col-10 ">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="btn btn-outline-success button-outline">Register</button>
+                </div>
+                <div class="row mt-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="100" fill="#F7882F"
+                        class="bi bi-arrow-bar-down mt-5" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid first mt-5">
+            <div class="container">
+                <div class="row m-5">
+                    <h1 class="display-1 text-center text-light inactive-link"> Looking For Service ?</h1>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <object data="{% static '/assets/home/people.svg' %}" width="500px"
+                            class=" me-5 d-sm-none d-md-block d-none d-sm-block"></object>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-2">
+                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                            </div>
+                            <div class="col-10 ">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                            </div>
+                            <div class="col-10 ">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                            </div>
+                            <div class="col-10 ">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            </div>
+                        </div>
+                        <div class="row"><button class="btn btn-outline-success button-outline">Register</button></div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="100" fill="#F7882F"
+                        class="bi bi-arrow-bar-down mt-5" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid first mt-5">
+            <div class="container">
+                <div class="row m-5">
+                    <h1 class="display-1 text-center text-light inactive-link"> F.A.Q.</h1>
+                </div>
+                <div class="row">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Accordion Item #1
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the first item's accordion body.</strong> It is shown by default,
+                                    until the collapse plugin adds the appropriate classes that we use to style each
+                                    element. These classes control the overall appearance, as well as the showing and
+                                    hiding via CSS transitions. You can modify any of this with custom CSS or overriding
+                                    our default variables. It's also worth noting that just about any HTML can go within
+                                    the <code>.accordion-body</code>, though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Accordion Item #2
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the second item's accordion body.</strong> It is hidden by default,
+                                    until the collapse plugin adds the appropriate classes that we use to style each
+                                    element. These classes control the overall appearance, as well as the showing and
+                                    hiding via CSS transitions. You can modify any of this with custom CSS or overriding
+                                    our default variables. It's also worth noting that just about any HTML can go within
+                                    the <code>.accordion-body</code>, though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Accordion Item #3
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
+                                    until the collapse plugin adds the appropriate classes that we use to style each
+                                    element. These classes control the overall appearance, as well as the showing and
+                                    hiding via CSS transitions. You can modify any of this with custom CSS or overriding
+                                    our default variables. It's also worth noting that just about any HTML can go within
+                                    the <code>.accordion-body</code>, though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h1 class="display-5 text-center text-light">Where you can find us.</h1>
+                        <div class="row">
+                        <div class="col-6"><img src="/WHCGy.png" alt="" id="map"></div>
+                        <div class="col-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum, odio!</div>
+                    </div>
+                    </div>
+                    <div class="col-6">
+                        <h1 class="display-5 text-center text-light">Contact</h1>
+                        <p>Phone : 22648835</p>
+                        <p>Email: d@d.com</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3"><p class=" d-inline ">© 2023 Fodni. All Rights Reserved.</p></div>
+                    <div class="col-3"><a href="">Terms & Conditions</a></div>
+                    <div class="col-3"><a href="">Privacy Policy</a></div>
+                    <div class="col-2 text-center al">
+                        <a href=""><i class="bi bi-instagram text-warning fs-1"></i></a>
+                        <a href=""><i class="bi bi-facebook text-warning fs-1"></i></a>
+                        <a href=""><i class="bi bi-twitter text-warning fs-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+*{
+    font-family: 'Titillium Web', sans-serif;
+}
+
+body{
+    background-image: url("/main/templates/static/assets/home/background.svg");
+    background-size: cover;
+    background-repeat: repeat;
+}
+.inactive-link{
+    color:white;
+    text-shadow: 1px 1px #6b7a8F;
+}
+
+.inactive-link:hover{
+    color: #F7882F;
+}
+
+
+
+.button-outline{
+    color: #F7882F;
+    border-color: #F7882F;
+}
+
+.button-outline:hover{
+    background-color:white ;
+    border-color:#F7882F ;
+    color: #F7882F;
+}
+
+.glass{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+#map{
+    width: 250px;
+}
+
+
+
+
+
+/* .main{
+    background: rgb(247,136,47);
+    background: radial-gradient(circle, rgba(247,136,47,1) 0%, rgba(63,94,251,0) 100%);
+} */
+
+/* img {
+    -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+} */
