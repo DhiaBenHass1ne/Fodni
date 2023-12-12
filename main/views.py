@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect, HttpResponse
-from .forms import RegisterForm
+from .forms import RegisterForm, PostForm
 from .models import Client, Provider,City,User
 from django.contrib.auth.decorators import login_required
 
@@ -68,3 +68,15 @@ def dashboard(request):
     
     
     
+@login_required
+def create_post(request):
+    if request.method== 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author= request.user
+            post.save()
+            return redirect("/home")
+    else :
+        form = PostForm()
+    return render (request, 'main/create_post.html', {"form": form})
