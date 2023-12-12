@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
+    {% load static %}
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./style-dashboard.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/style-dashboard.css' %} ">
+
 
     <style>
         body {
@@ -125,6 +127,10 @@
         .tab-button {
             width: 10rem;
         }
+
+        .element-z {
+            order: 1
+        }
     </style>
 </head>
 
@@ -138,7 +144,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse  " id="navbarSupportedContent  ">
-                <a class="navbar me-auto" href="#"><img src="fodni_2.png" alt="logo" width="100"></a>
+                <a class="navbar me-auto" href="#"><img src="{% static 'assets/dash/fodni_2.png '%}" alt="logo"
+                        width="100"></a>
                 <div class="tab text-center    me-auto mb-2 mb-lg-0 ">
                     <button class="maintablinks me-5 tab-button button-outline btn btn-outline  " id="maindefault"
                         onclick="mainTab(event, 'Dashboard')">Dashobard</button>
@@ -148,8 +155,8 @@
                 </div>
 
                 <div class="profile">
-                    <img src="./cool-profile-picture-87h46gcobjl5e4xu.jpg" data-bs-toggle="dropdown"
-                        alt="Profile Picture" class="profile-pic">
+                    <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
+                        data-bs-toggle="dropdown" alt="Profile Picture" class="profile-pic">
                     <!-- Default dropstart button -->
                     <div class="btn-group dropstart">
                         <ul class="dropdown-menu">
@@ -172,7 +179,10 @@
         <div class="row">
             <aside class="col-lg-2 col-md-3 col-sm-4 sidebar">
                 <div class="aside-top text-center ">
-                    <img src="./cool-profile-picture-87h46gcobjl5e4xu.jpg" alt="Profile Picture" class="side-profile">
+                    <a href="/profile">
+                        <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
+                            alt="Profile Picture" class="side-profile">
+                    </a>
                     <h1 class="m-3">Dhia Amri</h1>
                     <h2>Job Title</h2>
                 </div>
@@ -221,6 +231,7 @@
                         </div>
                     </div>
                 </div>
+                <a href="/logout_view" class="btn btn-danger" >Logout</a>
             </aside>
             <main class="col-lg-10 col-md-9 col-sm-8 content  ">
                 <div id="Jobs" class="maintabcontent">
@@ -231,7 +242,8 @@
                     <div class="top-elements ">
 
                         <div class="d-flex">
-                            <img src="pexels-malte-luk-2244746.jpg" class="profile-pic" alt>
+                            <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
+                                class="profile-pic" alt>
                             <div class="col-2 provider">
                                 <h3>Dhia Amri</h3>
                                 <h6>Tunis</h6>
@@ -248,13 +260,14 @@
                                     natus expedita nihil.</p>
 
                             </div>
-                            <p>(4.2)<img src="star.png" class="star" alt></p>
+                            <p>(4.2)<img src="{% static 'assets/dash/star.png' %}" class="star" alt></p>
 
                         </div>
                         <hr>
                         <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             <div class="d-flex">
-                                <img src="pexels-malte-luk-2244746.jpg" class="profile-pic" alt>
+                                <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic"
+                                    alt>
                                 <div class="col-2 provider">
                                     <h3>Dhia Amri</h3>
                                     <h6>Tunis</h6>
@@ -273,12 +286,12 @@
                                         sapiente natus expedita nihil.</p>
 
                                 </div>
-                                <p>(4.2)<img src="star.png" class="star" alt></p>
+                                <p>(4.2)<img src="{% static 'assets/dash/star.png' %}" class="star" alt></p>
                             </div>
                         </a>
                         <hr>
                         <div class="d-flex">
-                            <img src="pexels-malte-luk-2244746.jpg" class="profile-pic" alt>
+                            <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt>
                             <div class="col-2 provider">
                                 <h3>Dhia Amri</h3>
                                 <h6>Tunis</h6>
@@ -295,7 +308,7 @@
                                     natus expedita nihil.</p>
 
                             </div>
-                            <p>(4.2)<img src="star.png" class="star" alt></p>
+                            <p>(4.2)<img src="{% static 'assets/dash/star.png' %}" class="star" alt></p>
 
                         </div>
 
@@ -306,11 +319,14 @@
 
                     <div class=" btn-group d-flex justify-content-center mb-2" role="group" aria-label=""
                         style="width:100%">
-                        <button type="button" id="jobdefault" class="jobtablinks btn btn-secondary" style="background-color:#F7882F; width:33.3%"
+                        <button type="button" id="jobdefault" class="jobtablinks btn btn-secondary"
+                            style="background-color:#F7882F; width:33.3%"
                             onclick="jobTab(event, 'Active')">Active</button>
-                        <button type="button" class="jobtablinks btn btn-secondary" style="background-color:#F7882F; width:33.3%"
+                        <button type="button" class="jobtablinks btn btn-secondary"
+                            style="background-color:#F7882F; width:33.3%"
                             onclick="jobTab(event, 'Pending')">Pending</button>
-                        <button type="button" class="jobtablinks btn btn-secondary" style="background-color:#F7882F; width:33.3%"
+                        <button type="button" class="jobtablinks btn btn-secondary"
+                            style="background-color:#F7882F; width:33.3%"
                             onclick="jobTab(event, 'Completed')">Completed</button>
                     </div>
                     <div class="jobtabcontent" id="Active">
@@ -436,17 +452,18 @@
                                         <th style="width:25%">Job</th>
                                         <th style="width:25%">Client</th>
                                         <th style="width:25%">Completion Date</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr style="width:100%">
                                         <td style="width:25%">
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#completedstaticBackdrop">Giacomo Guilizzoni</a>
+                                            <a href="#" data-bs-toggle="modal"
+                                                data-bs-target="#completedstaticBackdrop">Giacomo Guilizzoni</a>
                                         </td>
                                         <td style="width:25%">40</td>
                                         <td style="width:25%">Peldi</td>
-                                        
+
                                     </tr>
                                     <tr style="width:100%">
                                         <td style="width:25%">Marco Botton<br>
@@ -454,7 +471,7 @@
                                         </td>
                                         <td style="width:25%">38</td>
                                         <td style="width:25%"></td>
-                                        
+
                                     </tr>
                                     <tr style="width:100%">
                                         <td style="width:25%">Mariah Maclachlan <br>
@@ -462,7 +479,7 @@
                                         </td>
                                         <td style="width:25%">41</td>
                                         <td style="width:25%">Patata</td>
-                                        
+
                                     </tr>
                                     <tr style="width:100%">
                                         <td style="width:25%">Valerie Liberty<br>
@@ -470,7 +487,7 @@
                                         </td>
                                         <td style="width:25%"> : )</td>
                                         <td style="width:25%">Val</td>
-                                        
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -491,7 +508,8 @@
                             <div class="col-4 me-3">
                                 <div class="container col-5 text-start ">
 
-                                    <img style src="./cool-profile-picture-87h46gcobjl5e4xu.jpg"
+                                    <img style
+                                        src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
                                         class="profile-pic d-block row" alt>
 
                                 </div>
@@ -554,7 +572,8 @@
                             <div class="col-4 me-3">
                                 <div class="container col-5 text-start ">
 
-                                    <img style src="./cool-profile-picture-87h46gcobjl5e4xu.jpg"
+                                    <img style
+                                        src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
                                         class="profile-pic d-block row" alt>
 
                                 </div>
@@ -617,7 +636,8 @@
                             <div class="col-4 me-3">
                                 <div class="container col-5 text-start ">
 
-                                    <img style src="./cool-profile-picture-87h46gcobjl5e4xu.jpg"
+                                    <img style
+                                        src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
                                         class="profile-pic d-block row" alt>
 
                                 </div>
@@ -663,24 +683,26 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" style="background-color:#F7882F;">Decline Job</button>
-                                    <button type="button" class="btn btn-primary" style="background-color:#F7882F;">Accept Job</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" style="background-color:#F7882F;">Decline
+                                    Job</button>
+                                <button type="button" class="btn btn-primary" style="background-color:#F7882F;">Accept
+                                    Job</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="completedstaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="completedstaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="container row col-12">
                             <div class="col-4 me-3">
                                 <div class="container col-5 text-start ">
 
-                                    <img style src="./cool-profile-picture-87h46gcobjl5e4xu.jpg"
+                                    <img style
+                                        src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
                                         class="profile-pic d-block row" alt>
 
                                 </div>
@@ -725,20 +747,19 @@
                                         distinctio odit! Voluptate debitis
                                         fugit eveniet iste magni ullam c</p>
 
-                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="./script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>

@@ -7,9 +7,9 @@ from django.contrib.auth import login, logout, authenticate
 
 
 # Create your views here.
-@login_required
 def home(request):
     return render(request, 'main/home.html')
+
 
 def sign_up(request):
     if request.method =='POST':
@@ -20,7 +20,7 @@ def sign_up(request):
                 selected_user= User.objects.last()
                 Provider.objects.create(user=selected_user, city=City.objects.get(gov=request.POST["city"] ) )
                 city= request.POST["city"]
-                return redirect('/login')
+                return redirect('/dashboard')
             
             else:
                 created_user = form.save()
@@ -29,14 +29,42 @@ def sign_up(request):
                 city= request.POST["city"]
                 
         
-                return redirect('/login')
+                return redirect('/dashboard')
                 
     else:
         form = RegisterForm()
     return render (request,'registration/sign_up.html',{"form": form})
 
+
+
 @login_required
 def logout_view(request):
     logout(request)
-    return HttpResponse("Logged Out")
+    return redirect('/home')
 
+@login_required
+def profile(request):
+    #logic here
+    return render(request,"main/profile_template.html")
+
+
+
+
+@login_required
+def dashboard(request):
+    user_id = request.user.id
+    is_client=None
+    is_provider=None
+    is_provider=Provider.objects.filter(user_id=user_id)
+    is_client=Client.objects.filter(user_id=user_id)
+    print("xxxxxxxxxxxxxxxxxxxxxxxxxx",is_client)
+    print("xxxxxxxxxxxxxxxxxxxxxxxxxx",is_provider)
+
+    if len(is_provider)>0 :
+        return render(request, 'main/provider_dashboard.html')
+    
+    if len(is_client)>0 :
+        return render(request, 'main/client_dashboard.html')
+    
+    
+    
