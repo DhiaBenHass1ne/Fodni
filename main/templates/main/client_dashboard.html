@@ -110,10 +110,32 @@
     }
 
     a{
-      text-decoration-line: none;
+      text-decoration: none;
       color: black;
-
     }
+
+    .top-elements > a{
+      text-decoration: none;
+    }
+
+    .bot-elements > a{
+      text-decoration: none;
+    }
+
+
+
+  
+
+  .card{
+    transition: box-shadow 0.5s ease;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .card:hover {
+  /* Add a more pronounced shadow on hover */
+  box-shadow: 5px 10px 15px #F7882F;
+}
   </style>
 </head>
 
@@ -211,7 +233,7 @@
             <div class="card" style="width: 18rem;">
               <img src="{% static 'assets/dash/electrician.jpg' %}" class="card-img-top" alt="...">
               <div class="card-body">
-                <h2></h2>
+                <h2>Electrician</h2>
                 <p class="card-text" >Some quick example text to build on the card title and make up the bulk of the card's
                   content.</p>
                   <!-- <button onclick="mainTab(event, 'list')">Click me</button> -->
@@ -223,7 +245,7 @@
             <div class="card" style="width: 18rem;">
               <img src="{% static 'assets/dash/painter.jpg' %}" class="card-img-top" alt="...">
               <div class="card-body">
-                <h2></h2>
+                <h2>Painter</h2>
                 <p class="card-text" >Some quick example text to build on the card title and make up the bulk of the card's
                   content.</p>
                   <!-- <button onclick="mainTab(event, 'list')">Click me</button> -->
@@ -235,7 +257,7 @@
             <div class="card" style="width: 18rem;">
               <img src="{% static 'assets/dash/housekeeping.jpg' %}" class="card-img-top" alt="...">
               <div class="card-body">
-                <h2></h2>
+                <h2>House Keeping</h2>
                 <p class="card-text" >Some quick example text to build on the card title and make up the bulk of the card's
                   content.</p>
                   <!-- <button onclick="mainTab(event, 'list')">Click me</button> -->
@@ -249,6 +271,7 @@
             <div class="card" style="width: 18rem;">
               <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="card-img-top" alt="...">
               <div class="card-body">
+                <h2>Mechanic</h2>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
                   content.</p>
               </div>
@@ -258,8 +281,8 @@
             <div class="card" style="width: 18rem;">
               <img src="{% static 'assets/dash/plumber.jpg' %}" class="card-img-top" alt="...">
               <div class="card-body">
-                <p class="card-text">Some quick exaaaample text to build on the card title and make up the bulk of the card's
-                  content.</p>
+                <h2>Plumber</h2>
+                <p class="card-text">They help with things like repairing leaks, unclogging drains, installing and maintaining plumbing fixtures (like toilets, sinks, and showers), and ensuring proper water flow throughout a property. </p>
               </div>
             </div>
           </a>
@@ -267,6 +290,7 @@
             <div class="card" style="width: 18rem;">
               <img src="{% static 'assets/dash/gardener.jpg' %}" class="card-img-top" alt="...">
               <div class="card-body">
+                <h2>Gardener</h2>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
                   content.</p>
               </div>
@@ -280,11 +304,11 @@
 
           <div class="top-elements ">
 
-              <div class="d-flex help">
+              <div class="d-flex help" style="margin-bottom: 30px;">
                 <a data-bs-toggle="modal"
                 data-bs-target="#CreatestaticBackdrop" href="#"><img src="{% static 'assets/dash/plus.png' %}" class="plus" alt></a>
 
-                    <h2>Request for help</h2>
+                    <h2 >Request for help</h2>
               </div>
               <hr>
 
