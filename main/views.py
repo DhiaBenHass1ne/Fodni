@@ -98,11 +98,14 @@ def profile(request):
     is_provider=Provider.objects.filter(user_id=user_id)
     is_client=Client.objects.filter(user_id=user_id)
 
+
     if len(is_provider)>0 :
-        return render(request, 'main/profile_template_p.html')
+        context={"provider":is_provider}
+        return render(request, 'main/profile_template_p.html',context)
     
     if len(is_client)>0 :
-        return render(request, 'main/client_dashboard_c.html')
+        context={"client":is_client}
+        return render(request, 'main/client_dashboard_c.html',context)
     
 
 # @login_required
