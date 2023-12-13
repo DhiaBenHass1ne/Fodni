@@ -68,16 +68,15 @@ def dashboard(request):
     is_provider=None
     is_provider=Provider.objects.filter(user_id=user_id)
     is_client=Client.objects.filter(user_id=user_id)
-
     if len(is_provider)>0 :
         posts=[]
         provider=is_provider[0]
+        requests=Request.objects.filter(provider_id=provider.id)
         all_posts=Post.objects.all()
         for post in all_posts:
             if post.author.city.gov == is_provider[0].city.gov and post.post_category.id == is_provider[0].category.id :
                 posts.append(post)
-        context={"posts":posts,
-                "provider":provider}
+        context={"posts":posts,"provider":provider, "requests":requests}
         return render(request, 'main/provider_dashboard.html', context=context)
     
     if len(is_client)>0 :

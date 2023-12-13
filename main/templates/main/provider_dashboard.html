@@ -404,45 +404,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    {% for request in requests %}
                                     <tr style="width:100%">
 
                                         <td style="width:25%"> <a href="#" data-bs-toggle="modal"
-                                                data-bs-target="#pendingstaticBackdrop">Giacomo Guilizzoni</a>
+                                                data-bs-target="#pendingstaticBackdrop">{{request.job.title}}</a>
                                             <!-- {{Full_Name}} --><br>
 
                                         </td>
-                                        <td style="width:25%">40</td>
-                                        <td style="width:25%">Peldi</td>
-                                        <td style="width:25%"><input type="checkbox" id="checkbox1" name="checkbox1"
-                                                value="Option1" checked></td>
+                                        <td style="width:25%">{{request.client.user.first_name}} {{request.client.user.last_name}}</td>
+                                        <td style="width:25%">{{request.created_at}}</td>
+                                        <td style="width:25%">Waiting For Client... :c</td>
                                     </tr>
-                                    <tr style="width:100%">
-                                        <td style="width:25%">Marco Botton<br>
-                                            Tuttofare
-                                        </td>
-                                        <td style="width:25%">38</td>
-                                        <td style="width:25%"></td>
-                                        <td style="width:25%"><input type="checkbox" id="checkbox1" name="checkbox1"
-                                                value="Option1" checked></td>
-                                    </tr>
-                                    <tr style="width:100%">
-                                        <td style="width:25%">Mariah Maclachlan <br>
-                                            Better Half
-                                        </td>
-                                        <td style="width:25%">41</td>
-                                        <td style="width:25%">Patata</td>
-                                        <td style="width:25%"><input type="checkbox" id="checkbox1" name="checkbox1"
-                                                value="Option1" unchecked></td>
-                                    </tr>
-                                    <tr style="width:100%">
-                                        <td style="width:25%">Valerie Liberty<br>
-                                            Head Chef
-                                        </td>
-                                        <td style="width:25%"> : )</td>
-                                        <td style="width:25%">Val</td>
-                                        <td style="width:25%"><input type="checkbox" id="checkbox1" name="checkbox1"
-                                                value="Option1" checked></td>
-                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </section>
