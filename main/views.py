@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, HttpResponse
 from .forms import RegisterForm, PostForm,ReviewForm
-from .models import Client, Provider,City,User,Review,Category
+from .models import Client, Provider,City,User,Review,Category,Post
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 
@@ -29,14 +29,14 @@ def sign_up(request):
             if request.POST["is_provider"]=="Provider":
                 created_user = form.save()
                 selected_user= User.objects.last()
-                Provider.objects.create(user=selected_user, city=City.objects.get(gov=request.POST["city"] ),bio=request.POST["bio"],category=Category.objects.get(title=request.POST["categories"] ) )
+                Provider.objects.create(user=selected_user, city=City.objects.get(gov=request.POST["city"] ),bio=request.POST["bio"],category=Category.objects.get(title=request.POST["categories"] ), phone=request.POST["phone"] )
                 city= request.POST["city"]
                 return redirect('/dashboard')
             
             else:
                 created_user = form.save()
                 selected_user= User.objects.last()
-                Client.objects.create(user=selected_user, city=City.objects.get(gov=request.POST["city"] ) )
+                Client.objects.create(user=selected_user, city=City.objects.get(gov=request.POST["city"] ), phone=request.POST["phone"] )
                 city= request.POST["city"]
                 bio= request.POST["bio"]
                 
@@ -70,7 +70,15 @@ def dashboard(request):
     is_client=Client.objects.filter(user_id=user_id)
 
     if len(is_provider)>0 :
-        return render(request, 'main/provider_dashboard.html')
+        posts=[]
+        provider=is_provider[0]
+        all_posts=Post.objects.all()
+        for post in all_posts:
+            if post.author.city.gov == is_provider[0].city.gov and post.post_category.id == is_provider[0].category.id :
+                posts.append(post)
+        context={"posts":posts,
+                "provider":provider}
+        return render(request, 'main/provider_dashboard.html', context=context)
     
     if len(is_client)>0 :
         return render(request, 'main/client_dashboard.html')

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     city = models.ForeignKey('City', related_name='client_city', on_delete=models.CASCADE , blank=True, null=True)
+    phone = models.CharField(max_length=8,null=True)
     # image  = models.ImageField(upload_to='static/')
 
 
@@ -14,6 +15,7 @@ class Client(models.Model):
 class Provider(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     city = models.ForeignKey('City', related_name='provider_city', on_delete=models.CASCADE , blank=True, null=True)
+    phone = models.CharField(max_length=8,null=True)
     bio = models.CharField(blank=True, null=True)
     category = models.ForeignKey('Category', related_name='provider_category', on_delete=models.CASCADE , blank=True, null=True)
     # image  = models.ImageField(upload_to='static/')
@@ -35,7 +37,7 @@ class Category(models.Model):
     description= models.TextField()
 
 class Post(models.Model):
-    author = models.ForeignKey (User, on_delete=models.CASCADE)
+    author = models.ForeignKey (Client, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description= models.TextField()
     post_category = models.ForeignKey (Category, on_delete=models.CASCADE,default="Other")
@@ -57,3 +59,6 @@ class Review(models.Model):
         
     def __str__(self):
         return f'{self.user.username} - {self.rating} stars'
+    
+
+    

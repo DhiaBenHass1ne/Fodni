@@ -183,8 +183,8 @@
                         <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
                             alt="Profile Picture" class="side-profile">
                     </a>
-                    <h1 class="m-3">Dhia Amri</h1>
-                    <h2>Job Title</h2>
+                    <h1 class="m-3">{{provider.user.first_name}} {{provider.user.last_name}}</h1>
+                    <h2>{{provider.category.title}}</h2>
                 </div>
                 <div class="form-check form-switch">
                     <label class="form-check-label col-10 " for="flexSwitchCheckChecked">Open For Requests</label>
@@ -231,8 +231,9 @@
                         </div>
                     </div>
                 </div>
-                <a href="/logout_view" class="btn btn-danger" >Logout</a>
+                <a href="/logout_view" class="btn btn-danger">Logout</a>
             </aside>
+
             <main class="col-lg-10 col-md-9 col-sm-8 content  ">
                 <div id="Jobs" class="maintabcontent">
 
@@ -240,78 +241,81 @@
                     <hr>
 
                     <div class="top-elements ">
-
-                        <div class="d-flex">
-                            <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
-                                class="profile-pic" alt>
-                            <div class="col-2 provider">
-                                <h3>Dhia Amri</h3>
-                                <h6>Tunis</h6>
-                            </div>
-                            <div class="description">
-                                <p class="col-8">Lorem ipsum dolor sit, amet
-                                    consectetur adipisicing elit. Officiis
-                                    voluptate
-                                    amet tempora placeat harum quis eum ut
-                                    accusantium optio consequuntur veniam
-                                    quam
-                                    molestias
-                                    voluptatem, cumque excepturi sapiente
-                                    natus expedita nihil.</p>
-
-                            </div>
-                            <p>(4.2)<img src="{% static 'assets/dash/star.png' %}" class="star" alt></p>
-
-                        </div>
-                        <hr>
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        {% for post in posts %}
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{post.id}}">
                             <div class="d-flex">
                                 <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic"
                                     alt>
                                 <div class="col-2 provider">
-                                    <h3>Dhia Amri</h3>
-                                    <h6>Tunis</h6>
+                                    <h3>{{post.author.user.first_name}} {{post.author.user.last_name}}</h3>
+                                    <h6>{{post.author.city.gov}}</h6>
                                 </div>
                                 <div class="description">
-                                    <p class="col-8">Lorem ipsum dolor sit,
-                                        amet consectetur adipisicing elit.
-                                        Officiis
-                                        voluptate
-                                        amet tempora placeat harum quis eum
-                                        ut accusantium optio consequuntur
-                                        veniam
-                                        quam
-                                        molestias
-                                        voluptatem, cumque excepturi
-                                        sapiente natus expedita nihil.</p>
+                                    <h4>{{post.title}}</h4>
+                                    <p class="col-8">{{post.description}}</p>
 
                                 </div>
                                 <p>(4.2)<img src="{% static 'assets/dash/star.png' %}" class="star" alt></p>
                             </div>
                         </a>
                         <hr>
-                        <div class="d-flex">
-                            <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt>
-                            <div class="col-2 provider">
-                                <h3>Dhia Amri</h3>
-                                <h6>Tunis</h6>
-                            </div>
-                            <div class="description">
-                                <p class="col-8">Lorem ipsum dolor sit, amet
-                                    consectetur adipisicing elit. Officiis
-                                    voluptate
-                                    amet tempora placeat harum quis eum ut
-                                    accusantium optio consequuntur veniam
-                                    quam
-                                    molestias
-                                    voluptatem, cumque excepturi sapiente
-                                    natus expedita nihil.</p>
 
-                            </div>
-                            <p>(4.2)<img src="{% static 'assets/dash/star.png' %}" class="star" alt></p>
+                        <div class="modal fade" id="modal{{post.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="container row col-12">
+                                        <div class="col-4 me-3">
+                                            <div class="container col-5 text-start ">
 
+                                                <img style
+                                                    src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
+                                                    class="profile-pic d-block row" alt>
+
+                                            </div>
+                                            <p class="m-0 ms-2 font-weight-bold">{{post.author.user.first_name}} {{post.author.user.last_name}}</p>
+                                            <div class="ms-2">
+
+                                                <p class="m-0 mt-2">Ratings :</p>
+                                                <p class="m-0 ">(4.3)</p>
+                                                <p class="m-0 mt-2">Phone :</p>
+                                                <p class="m-0">12 345 678</p>
+                                                <p class="m-0 mt-2">Governorate :</p>
+                                                <p class="m-0">{{post.author.city.gov}} </p>
+                                                <p class="m-0 mt-2">E-mail :</p>
+                                                <p class="m-0">{{post.author.user.email}}</p>
+                                                <p class="m-0 mt-5 font-weight-bold">Category :</p>
+                                                <p class="m-0">{{post.post_category.title}}</p>
+                                            </div>
+
+                                        </div>
+                                        <div class=" col-7">
+                                            <div class=" modal-header ">
+
+                                                <h1 class="modal-title fs-5  font-weight-bold" id="staticBackdropLabel">
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <p class="font-weight-bold">Description </p>
+                                                <p>{{post.description}}</p>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    style="background-color:#F7882F;">I'm
+                                                    Available</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
+                        {% endfor %}
                     </div>
 
                 </div>
@@ -500,70 +504,7 @@
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                 crossorigin="anonymous"></script>
             <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="container row col-12">
-                            <div class="col-4 me-3">
-                                <div class="container col-5 text-start ">
 
-                                    <img style
-                                        src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
-                                        class="profile-pic d-block row" alt>
-
-                                </div>
-                                <p class="m-0 ms-2 font-weight-bold">Achref Nejah</p>
-                                <div class="ms-2">
-
-                                    <p class="m-0 mt-2">Ratings :</p>
-                                    <p class="m-0 ">(4.3)</p>
-                                    <p class="m-0 mt-2">Phone :</p>
-                                    <p class="m-0">12 345 678</p>
-                                    <p class="m-0 mt-2">Governorate :</p>
-                                    <p class="m-0"> Tunis</p>
-                                    <p class="m-0 mt-2">E-mail :</p>
-                                    <p class="m-0"> test@test.tn</p>
-                                    <p class="m-0 mt-5 font-weight-bold">Category :</p>
-                                    <p class="m-0"> Job Category</p>
-                                </div>
-
-                            </div>
-                            <div class=" col-7">
-                                <div class=" modal-header ">
-
-                                    <h1 class="modal-title fs-5  font-weight-bold" id="staticBackdropLabel">Job Title
-                                    </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <p class="font-weight-bold">Description </p>
-                                    <p> Lorem ipsum dolor sit
-                                        amet, consectetur adipisicing elit.
-                                        Excepturi similique ratione, sunt
-                                        iusto possimus harum perferendis
-                                        asperiores architecto a ea in rerum
-                                        magnam explicabo ullam veniam,
-                                        pariatur voluptatem quos quidem!
-                                        Molestiae voluptates vero maxime
-                                        molestias, fugit illo alias
-                                        distinctio odit! Voluptate debitis
-                                        fugit eveniet iste magni ullam c</p>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" style="background-color:#F7882F;">I'm
-                                        Available</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="modal fade" id="activestaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
