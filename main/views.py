@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, HttpResponse
 from .forms import RegisterForm, PostForm,ReviewForm
-from .models import Client, Provider,City,User,Review,Category,Post,Request
+from .models import Client, Provider,City,User,Review,Category,Post,Request,Contact
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 
@@ -80,6 +80,7 @@ def dashboard(request):
         return render(request, 'main/provider_dashboard.html', context=context)
     
     if len(is_client)>0 :
+        client=is_client[0]
         return render(request, 'main/client_dashboard.html')
     
     
@@ -119,11 +120,14 @@ def send_request(request, provider_id,client_id,post_id):
     curr_provider=Provider.objects.get(id=provider_id)
     curr_client=Client.objects.get(id=client_id)
     curr_post=Post.objects.get(id=post_id)
-    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    print(curr_provider)
-    print(curr_client)
-    print(curr_post)
     Request.objects.create(provider=curr_provider, client=curr_client,job = curr_post)
+    return redirect ("/dashboard")
+
+@login_required
+def send_contact(request, provider_id,client_id):
+    curr_provider=Provider.objects.get(id=provider_id)
+    curr_client=Client.objects.get(id=client_id)
+    Contact.objects.create(provider=curr_provider, client=curr_client)
     return redirect ("/dashboard")
 
 

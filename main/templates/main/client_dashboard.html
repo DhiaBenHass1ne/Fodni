@@ -30,7 +30,7 @@
     .sidebar {
       background-color: #F7882F;
       color: #fff;
-      height: 120vh;
+      height: 145vh;
       border-radius: 20PX;
     }
 
@@ -185,7 +185,8 @@
             onclick="mainTab(event, 'providers')">Search For a Provider</button>
           <button class="maintablinks me-5 tab-button button-outline btn btn-outline   "
             onclick="mainTab(event, 'requests')"> Your Request</button>
-
+            <button class="maintablinks me-5 tab-button button-outline btn btn-outline   "
+            onclick="mainTab(event, 'contacts')"> Your Contacts</button>
 
 
         </div>
@@ -415,6 +416,42 @@
         </div>
       </main>
 
+      <main class="col-lg-10 col-md-9 col-sm-8 content maintabcontent " id="contacts">
+
+        <div class="top-elements ">
+
+          <div class="d-flex help" style="margin-bottom: 30px;">
+            
+            <h2>CONTACTS</h2>
+          </div>
+          <hr>
+
+          <div class="d-flex ">
+            <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt="">
+            <div class="col-2 provider">
+              <h3>Dhia Amri</h3>
+              <h6>Tunis</h6>
+            </div>
+            <div class="description">
+              <p class="col-8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
+                voluptate
+                amet tempora placeat harum quis eum ut accusantium optio consequuntur veniam quam
+                molestias
+                voluptatem, cumque excepturi sapiente natus expedita nihil.</p>
+
+
+            </div>
+            <p class="col-1"><strong style="color: green;">PENDING</strong></p>
+
+          </div>
+          <hr>
+
+
+
+
+        </div>
+      </main>
+
       <main id="list" class="col-lg-10 col-md-9 col-sm-8 content  maintabcontent">
         <h1>Contact a Service Provider</h1>
         <hr>
@@ -547,7 +584,9 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Contact</button>
+              <a href="/contact/">
+                <button type="button" class="btn btn-primary">Contact</button>
+              </a>
             </div>
           </div>
         </div>

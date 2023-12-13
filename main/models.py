@@ -83,3 +83,11 @@ class Done(models.Model):
     client_done = models.BooleanField (default=False)
     provider_done = models.BooleanField (default=False)
     created_at=models.DateTimeField(auto_now_add=True)
+
+class Contact(models.Model):
+    provider= models.ForeignKey(Provider, on_delete=models.CASCADE)
+    client= models.ForeignKey(Client, on_delete=models.CASCADE)
+    created_at=models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['client', 'provider']

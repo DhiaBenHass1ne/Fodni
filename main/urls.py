@@ -15,6 +15,7 @@ urlpatterns = [
     path('create-post',views.create_post, name= 'post'),
     path('profile',views.profile, name= 'profile'),
     path('request/<int:provider_id>/<int:client_id>/<int:post_id>',views.send_request, name= 'request'),
+    path('contact/<int:provider_id>/<int:client_id>/',views.send_request, name= 'contact'),
 
 ]
 
