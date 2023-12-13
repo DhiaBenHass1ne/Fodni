@@ -23,6 +23,9 @@ def home(request):
 
 
 def sign_up(request):
+    if request.user.is_authenticated:
+            # If the user is logged in, redirect them to another page
+        return redirect('dashboard')  # Replace 'home' with your desired URL name or path
     if request.method =='POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
