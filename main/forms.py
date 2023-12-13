@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, Review
 
 
 
@@ -12,7 +12,6 @@ class RegisterForm(UserCreationForm):
     city=forms.CharField(required=True)
     phone=forms.CharField(required=True)
     is_provider=forms.ChoiceField(required=True, widget=forms.RadioSelect, choices={("provider","provider"),("client","client")})
-    
     
 
     class Meta:
@@ -26,3 +25,11 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ["title","description","post_category"]
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['rating']
+        widgets = {
+            'rating': forms.NumberInput(attrs={'type': 'number', 'step': '0.1', 'min': '0', 'max': '5'}),
+        }

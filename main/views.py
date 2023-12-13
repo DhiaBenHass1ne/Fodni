@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, HttpResponse
-from .forms import RegisterForm, PostForm
-from .models import Client, Provider,City,User
+from .forms import RegisterForm, PostForm,ReviewForm
+from .models import Client, Provider,City,User,Review
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth import login, logout, authenticate
@@ -80,3 +80,23 @@ def create_post(request):
     else :
         form = PostForm()
     return render (request, 'main/create_post.html', {"form": form})
+
+# @login_required
+# def review_list(request):
+#     reviews = Review.objects.all()
+#     return render(request, 'reviews/review_list.html', {'reviews': reviews})
+
+# @login_required
+# def add_review(request):
+#     if request.method == 'POST':
+#         form = ReviewForm(request.POST)
+#         if form.is_valid():
+#             review = form.save(commit=False)
+#             review.user = request.user
+#             review.provider=
+#             review.save()
+#             return redirect('review_list')
+#     else:
+#         form = ReviewForm()
+
+#     return render(request, 'reviews/add_review.html', {'form': form})

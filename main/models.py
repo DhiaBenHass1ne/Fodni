@@ -42,3 +42,16 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title + "/n" + self.description
+    
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    provider= models.ForeignKey(Provider, on_delete=models.CASCADE)
+    rating = models.FloatField() 
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['user', 'provider']
+        
+    def __str__(self):
+        return f'{self.user.username} - {self.rating} stars'
