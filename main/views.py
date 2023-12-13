@@ -24,19 +24,19 @@ def home(request):
 
 def sign_up(request):
     if request.method =='POST':
-        form = RegisterForm(request.POST)
+        form = RegisterForm(request.POST, request.FILES)
         if form.is_valid():
             if request.POST["is_provider"]=="Provider":
                 created_user = form.save()
                 selected_user= User.objects.last()
-                Provider.objects.create(user=selected_user, city=City.objects.get(gov=request.POST["city"] ),bio=request.POST["bio"],category=Category.objects.get(title=request.POST["categories"] ), phone=request.POST["phone"] )
+                Provider.objects.create(user=selected_user, city=City.objects.get(gov=request.POST["city"] ),bio=request.POST["bio"],category=Category.objects.get(title=request.POST["categories"] ), phone=request.POST["phone"], image=request.FILES["image"] )
                 city= request.POST["city"]
                 return redirect('/dashboard')
             
             else:
                 created_user = form.save()
                 selected_user= User.objects.last()
-                Client.objects.create(user=selected_user, city=City.objects.get(gov=request.POST["city"] ), phone=request.POST["phone"] )
+                Client.objects.create(user=selected_user, city=City.objects.get(gov=request.POST["city"] ), phone=request.POST["phone"], image=request.FILES["image"] )
                 city= request.POST["city"]
                 bio= request.POST["bio"]
                 
@@ -80,8 +80,11 @@ def dashboard(request):
         return render(request, 'main/provider_dashboard.html', context=context)
     
     if len(is_client)>0 :
+        categories=Category.objects.all()
+        providers=Provider.objects.all()
         client=is_client[0]
-        return render(request, 'main/client_dashboard.html')
+        context={"client":client, "categories":categories, "providers":providers}
+        return render(request, 'main/client_dashboard.html', context=context)
     
     
     

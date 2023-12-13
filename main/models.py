@@ -6,7 +6,7 @@ class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     city = models.ForeignKey('City', related_name='client_city', on_delete=models.CASCADE , blank=True, null=True)
     phone = models.CharField(max_length=8,null=True)
-    # image  = models.ImageField(upload_to='static/')
+    image = models.ImageField(upload_to='clients/',null=True)
 
 
     def __str__(self):
@@ -18,7 +18,7 @@ class Provider(models.Model):
     phone = models.CharField(max_length=8,null=True)
     bio = models.CharField(blank=True, null=True)
     category = models.ForeignKey('Category', related_name='provider_category', on_delete=models.CASCADE , blank=True, null=True)
-    # image  = models.ImageField(upload_to='static/')
+    image = models.ImageField(upload_to='providers/', null=True)
 
 
     def __str__(self):
@@ -35,6 +35,9 @@ class City(models.Model):
 class Category(models.Model):
     title=models.CharField(max_length=200)
     description= models.TextField()
+    
+    def __str__(self):
+        return self.title
 
 class Post(models.Model):
     author = models.ForeignKey (Client, on_delete=models.CASCADE)

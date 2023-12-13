@@ -14,7 +14,7 @@ class RegisterForm(UserCreationForm):
     is_provider=forms.ChoiceField(required=True, widget=forms.RadioSelect, choices={("Provider","Provider"),("Client","Client")})
     bio = forms.CharField(required=False)
     categories = forms.ChoiceField(required=False, choices=[])
-
+    image = forms.ImageField()
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
         self.fields['categories'].choices = self.get_categories()
@@ -25,7 +25,7 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ["first_name","last_name","username","email","state","city","phone","password1","password2","is_provider","bio","categories"]
+        fields = ["image","first_name","last_name","username","email","state","city","phone","password1","password2","is_provider","bio","categories"]
 
 class PostForm(forms.ModelForm):
 

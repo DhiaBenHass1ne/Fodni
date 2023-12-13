@@ -262,7 +262,7 @@
 
         <h1 style="margin-bottom: 30px;">Categories</h1>
         <div class="top-elements d-flex">
-          <a href="#" onclick="mainTab(event, 'list')">
+          <a href="#" onclick="mainTab(event, 'list-Electricity')">
             <div class="card" style="width: 18rem;">
               <img src="{% static 'assets/dash/electrician.jpg' %}" class="card-img-top" alt="...">
               <div class="card-body">
@@ -275,7 +275,7 @@
               </div>
             </div>
           </a>
-          <a href="#" onclick="mainTab(event, 'list')">
+          <a href="#" onclick="mainTab(event, 'list-Paint')">
             <div class="card" style="width: 18rem;">
               <img src="{% static 'assets/dash/painter.jpg' %}" class="card-img-top" alt="...">
               <div class="card-body">
@@ -451,72 +451,35 @@
 
         </div>
       </main>
-
-      <main id="list" class="col-lg-10 col-md-9 col-sm-8 content  maintabcontent">
+      {% for one_category in categories %}
+      <main id="list-{{one_category.title}}" class="col-lg-10 col-md-9 col-sm-8 content  maintabcontent">
         <h1>Contact a Service Provider</h1>
         <hr>
 
         <div class="top-elements ">
 
-
+            {% for provider in providers %}
+            {% if provider.category.title == one_category.title and provider.city.gov == client.city.gov %}
           <div class="d-flex effect">
             <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt="">
             <div class="col-2 provider">
-              <h3>Dhia Amri</h3>
-              <h6>Tunis</h6>
+              <h3>{{provider.user.first_name}} {{provider.user.last_name}} </h3>
+              <h6>{{provider.city.gov}}</h6>
             </div>
             <div class="description">
-              <p class="col-8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
-                voluptate
-                amet tempora placeat harum quis eum ut accusantium optio consequuntur veniam quam
-                molestias
-                voluptatem, cumque excepturi sapiente natus expedita nihil.</p>
-
+              <p class="col-8">
+                {{provider.bio}}
 
             </div>
             <p>(4.2)<img src="{% static 'assets/dash/star.png' %}" class="star" alt=""></p>
 
           </div>
-          <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <div class="d-flex effect">
-              <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt="">
-              <div class="col-2 provider">
-                <h3>Dhia Amri</h3>
-                <h6>Tunis</h6>
-              </div>
-              <div class="description">
-                <p class="col-8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
-                  voluptate
-                  amet tempora placeat harum quis eum ut accusantium optio consequuntur veniam quam
-                  molestias
-                  voluptatem, cumque excepturi sapiente natus expedita nihil.</p>
-
-
-              </div>
-              <p>(4.2)<img src="{% static 'assets/dash/star.png' %}" class="star" alt=""></p>
-            </div>
-          </a>
-          <div class="d-flex effect">
-            <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt="">
-            <div class="col-2 provider">
-              <h3>Dhia Amri</h3>
-              <h6>Tunis</h6>
-            </div>
-            <div class="description">
-              <p class="col-8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
-                voluptate
-                amet tempora placeat harum quis eum ut accusantium optio consequuntur veniam quam
-                molestias
-                voluptatem, cumque excepturi sapiente natus expedita nihil.</p>
-
-
-            </div>
-            <p>(4.2)<img src="{% static 'assets/dash/star.png' %}" class="star" alt=""></p>
-
-          </div>
+            {% endif %}
+          {% endfor %}
 
         </div>
       </main>
+            {% endfor %}
       <div class="modal fade" id="CreatestaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -584,7 +547,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <a href="/contact/">
+              <a href="/contact">
                 <button type="button" class="btn btn-primary">Contact</button>
               </a>
             </div>

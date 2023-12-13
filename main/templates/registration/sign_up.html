@@ -54,6 +54,12 @@
             {% csrf_token %}
             <div class="top-side">
                 <div class="form-control">
+                    {{ form.image }}
+                    {% if form.image.errors %}
+                    <div class="error">{{ form.image.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-control">
                     {{ form.first_name }}
                     <label>First name</label>
                     {% if form.first_name.errors %}
