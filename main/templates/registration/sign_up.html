@@ -9,90 +9,147 @@
     <link rel="stylesheet" href="{% static 'css/style-logreg.css' %}">
     <style>
         form {
-
             display: flex;
             justify-content: space-between;
         }
     </style>
+    <script>
+
+        function isProvider() {
+    
+            var isProviderRadio = document.getElementById('id_is_provider_1');
+    
+            var bio = document.getElementById('id_bio');
+    
+            var categories = document.getElementById('id_categories');
+    
+    
+            if (isProviderRadio.value === 'Provider') {
+    
+                bio.style.display = 'block';
+    
+                categories.style.display = 'block';
+    
+            } else {
+    
+                bio.style.display = 'none';
+    
+                categories.style.display = 'none';
+    
+            }
+    
+        }
+    
+    </script>
 </head>
 
 <body>
     {% load crispy_forms_tags %}
     <nav>
-        <a href="#"><img src="{% static 'assets/dash/fodni_2.png' %}" alt="logo"></a>
+        <a href="/home"><img src="{% static 'assets/dash/fodni_2.png' %}" alt="logo"></a>
     </nav>
     <div class="form-wrapper">
         <h2>Sign Up</h2>
         <form method="post" enctype="multipart/form-data">
-            {%csrf_token%}
+            {% csrf_token %}
             <div class="top-side">
                 <div class="form-control">
-                    {{form.first_name}}
+                    {{ form.first_name }}
                     <label>First name</label>
                     {% if form.first_name.errors %}
                     <div class="error">{{ form.first_name.errors }}</div>
                     {% endif %}
                 </div>
                 <div class="form-control">
-                    {{form.last_name}}
+                    {{ form.last_name }}
                     <label>Last name</label>
                     {% if form.last_name.errors %}
                     <div class="error">{{ form.last_name.errors }}</div>
                     {% endif %}
                 </div>
                 <div class="form-control">
-                    {{form.username}}
+                    {{ form.username }}
                     <label>Username</label>
-                    {% if field.errors %}
-                    <div class="error">{{ field.errors }}</div>
+                    {% if form.username.errors %}
+                    <div class="error">{{ form.username.errors }}</div>
                     {% endif %}
                 </div>
                 <div class="form-control">
-                    {{form.email}}
+                    {{ form.email }}
                     <label>Email</label>
-                    {% if field.errors %}
-                    <div class="error">{{ field.errors }}</div>
+                    {% if form.email.errors %}
+                    <div class="error">{{ form.email.errors }}</div>
                     {% endif %}
                 </div>
-                <a href="/login">Have an account ? Log in</a>
+
+                <div class="additional-fields" style="display: none;" id="add">
+                    <div class="form-control">
+                        {{ form.bio.label_tag }}
+                        {{ form.bio }}
+                    </div>
+                    <div class="form-control">
+                        {{ form.categories.label_tag }}
+                        {{ form.categories }}
+                    </div>
+                </div>
+
+                <a href="/login">Have an account? Log in</a>
             </div>
 
             <div class="bot-side">
                 <div class="form-control">
-                    {{form.state}}
+                    {{ form.state }}
                     <label>State</label>
                 </div>
                 <div class="form-control">
-                    {{form.city}}
+                    {{ form.city }}
                     <label>City</label>
                 </div>
                 <div class="form-control">
-                    {{form.phone}}
+                    {{ form.phone }}
                     <label>Phone</label>
                 </div>
                 <div class="form-control">
-                    {{form.password1}}
+                    {{ form.password1 }}
                     <label>Password</label>
                 </div>
                 <div class="form-control">
-                    {{form.password2}}
+                    {{ form.password2 }}
                     <label>Confirm Password</label>
                 </div>
                 <div class="radio-container">
-                    
-                        {{form.is_provider}}
+                    {{ form.is_provider }}
+                    <script>
+                        document.getElementById('id_is_provider_1').onchange = isProvider;
+                        document.getElementById('id_is_provider_0').onchange = isProvider;
+                    </script>
                 </div>
-
-
+                
                 <button type="submit">Sign In</button>
             </div>
-
-
         </form>
-
-
-
     </div>
+    <script>
+        function isProvider() {
+            var isProviderRadio = document.getElementById('id_is_provider_1');
+            var bio = document.getElementById('id_bio');
+            var categories = document.getElementById('id_categories');
+            var additionalFields = document.getElementById('add');
+    
+            if (isProviderRadio.checked) {
+                additionalFields.style.display = 'none';
+            } else {
+                additionalFields.style.display = 'block';
+            }
+        }
+    
+        // Attach the onchange event to the radio group
+        var isProviderRadios = document.getElementsByName('is_provider');
+        for (var i = 0; i < isProviderRadios.length; i++) {
+            isProviderRadios[i].onchange = isProvider;
+        }
+    </script>
+    
 </body>
 
 </html>

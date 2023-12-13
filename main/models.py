@@ -14,6 +14,8 @@ class Client(models.Model):
 class Provider(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     city = models.ForeignKey('City', related_name='provider_city', on_delete=models.CASCADE , blank=True, null=True)
+    bio = models.CharField(blank=True, null=True)
+    category = models.ForeignKey('Category', related_name='provider_category', on_delete=models.CASCADE , blank=True, null=True)
     # image  = models.ImageField(upload_to='static/')
 
 

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Post, Review
+from .models import Post, Review, Category
 
 
 
@@ -12,13 +12,20 @@ class RegisterForm(UserCreationForm):
     city=forms.CharField(required=True)
     phone=forms.CharField(required=True)
     is_provider=forms.ChoiceField(required=True, widget=forms.RadioSelect, choices={("Provider","Provider"),("Client","Client")})
+    bio = forms.CharField(required=False)
+    categories = forms.ChoiceField(required=False, choices=[])
+
+    def __init__(self, *args, **kwargs):
+        super(RegisterForm, self).__init__(*args, **kwargs)
+        self.fields['categories'].choices = self.get_categories()
+
     
+    def get_categories(self):
+        return [(category.title, category.title) for category in Category.objects.all()]
 
     class Meta:
         model = User
-        fields = ["first_name","last_name","username","email","state","city","phone","password1","password2","is_provider"]
-
-
+        fields = ["first_name","last_name","username","email","state","city","phone","password1","password2","is_provider","bio","categories"]
 
 class PostForm(forms.ModelForm):
 

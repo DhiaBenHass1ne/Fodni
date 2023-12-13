@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, HttpResponse
 from .forms import RegisterForm, PostForm,ReviewForm
-from .models import Client, Provider,City,User,Review
+from .models import Client, Provider,City,User,Review,Category
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 
@@ -23,16 +23,13 @@ def home(request):
 
 
 def sign_up(request):
-    if request.user.is_authenticated:
-            # If the user is logged in, redirect them to another page
-        return redirect('dashboard')  # Replace 'home' with your desired URL name or path
     if request.method =='POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            if request.POST["is_provider"]=="provider":
+            if request.POST["is_provider"]=="Provider":
                 created_user = form.save()
                 selected_user= User.objects.last()
-                Provider.objects.create(user=selected_user, city=City.objects.get(gov=request.POST["city"] ) )
+                Provider.objects.create(user=selected_user, city=City.objects.get(gov=request.POST["city"] ),bio=request.POST["bio"],category=Category.objects.get(title=request.POST["categories"] ) )
                 city= request.POST["city"]
                 return redirect('/dashboard')
             
@@ -41,6 +38,7 @@ def sign_up(request):
                 selected_user= User.objects.last()
                 Client.objects.create(user=selected_user, city=City.objects.get(gov=request.POST["city"] ) )
                 city= request.POST["city"]
+                bio= request.POST["bio"]
                 
         
                 return redirect('/dashboard')
@@ -91,6 +89,21 @@ def create_post(request):
     else :
         form = PostForm()
     return render (request, 'main/create_post.html', {"form": form})
+
+@login_required
+def profile(request):
+    user_id = request.user.id
+    is_client=None
+    is_provider=None
+    is_provider=Provider.objects.filter(user_id=user_id)
+    is_client=Client.objects.filter(user_id=user_id)
+
+    if len(is_provider)>0 :
+        return render(request, 'main/profile_template_p.html')
+    
+    if len(is_client)>0 :
+        return render(request, 'main/client_dashboard_c.html')
+    
 
 # @login_required
 # def review_list(request):
