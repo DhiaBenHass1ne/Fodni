@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, HttpResponse
 from .forms import RegisterForm, PostForm,ReviewForm
-from .models import Client, Provider,City,User,Review,Category,Post
+from .models import Client, Provider,City,User,Review,Category,Post,Request
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 
@@ -114,7 +114,19 @@ def profile(request):
     if len(is_client)>0 :
         context={"client":is_client}
         return render(request, 'main/client_dashboard_c.html',context)
-    
+
+@login_required
+def send_request(request, provider_id,client_id,post_id):
+    curr_provider=Provider.objects.get(id=provider_id)
+    curr_client=Client.objects.get(id=client_id)
+    curr_post=Post.objects.get(id=post_id)
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print(curr_provider)
+    print(curr_client)
+    print(curr_post)
+    Request.objects.create(provider=curr_provider, client=curr_client,job = curr_post)
+    return redirect ("/dashboard")
+
 
 # @login_required
 # def review_list(request):
