@@ -108,6 +108,12 @@
     .bot-elements {
       justify-content: space-around;
     }
+
+    a{
+      text-decoration-line: none;
+      color: black;
+
+    }
   </style>
 </head>
 
@@ -201,16 +207,18 @@
         
         <h1>Categories</h1>
         <div class="top-elements d-flex">
-          <div class="card" style="width: 18rem;">
-            <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h2></h2>
-              <p class="card-text" >Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-                <button onclick="mainTab(event, 'list')">Click me</button>
-                
+          <a href="#"   onclick="mainTab(event, 'list')">
+            <div class="card" style="width: 18rem;">
+              <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h2></h2>
+                <p class="card-text" >Some quick example text to build on the card title and make up the bulk of the card's
+                  content.</p>
+                  <!-- <button onclick="mainTab(event, 'list')">Click me</button> -->
+            
+              </div>
             </div>
-          </div>
+          </a>
           <div class="card" style="width: 18rem;">
             <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}" class="card-img-top" alt="...">
             <div class="card-body">

@@ -2,12 +2,23 @@ from django.shortcuts import render,redirect, HttpResponse
 from .forms import RegisterForm, PostForm,ReviewForm
 from .models import Client, Provider,City,User,Review
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 
 from django.contrib.auth import login, logout, authenticate
 
+class CustomLoginView(LoginView):
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            # If the user is logged in, redirect them to another page
+            return redirect('dashboard')  # Replace 'home' with your desired URL name or path
+        else:
+            return super().dispatch(request, *args, **kwargs)
 
 # Create your views here.
 def home(request):
+    if request.user.is_authenticated:
+            # If the user is logged in, redirect them to another page
+        return redirect('dashboard')  # Replace 'home' with your desired URL name or path
     return render(request, 'main/home.html')
 
 
@@ -49,7 +60,6 @@ def profile(request):
 
 
 
-
 @login_required
 def dashboard(request):
     user_id = request.user.id
@@ -57,8 +67,6 @@ def dashboard(request):
     is_provider=None
     is_provider=Provider.objects.filter(user_id=user_id)
     is_client=Client.objects.filter(user_id=user_id)
-    print("xxxxxxxxxxxxxxxxxxxxxxxxxx",is_client)
-    print("xxxxxxxxxxxxxxxxxxxxxxxxxx",is_provider)
 
     if len(is_provider)>0 :
         return render(request, 'main/provider_dashboard.html')
