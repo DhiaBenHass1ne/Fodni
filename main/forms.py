@@ -11,7 +11,7 @@ class RegisterForm(UserCreationForm):
     state=forms.CharField(required=True)
     city=forms.CharField(required=True)
     phone=forms.CharField(required=True)
-    is_provider=forms.ChoiceField(required=True, widget=forms.RadioSelect, choices={("provider","provider"),("client","client")})
+    is_provider=forms.ChoiceField(required=True, widget=forms.RadioSelect, choices={("Provider","Provider"),("Client","Client")})
     
 
     class Meta:
