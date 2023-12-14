@@ -171,7 +171,7 @@
 </head>
 
 <body>
-
+  {% load crispy_forms_tags %}
   <nav class="navbar navbar-expand-lg bg-body-tertiary position-sticky glass">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -352,64 +352,24 @@
             <h2>Request for help</h2>
           </div>
           <hr>
-
+          {% for post in posts %}
           <div class="d-flex ">
             <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt="">
             <div class="col-2 provider">
-              <h3>Dhia Amri</h3>
-              <h6>Tunis</h6>
+              <h3>{{post.title}}</h3>
+              <h6>{{post.category}}</h6>
             </div>
             <div class="description">
-              <p class="col-8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
-                voluptate
-                amet tempora placeat harum quis eum ut accusantium optio consequuntur veniam quam
-                molestias
-                voluptatem, cumque excepturi sapiente natus expedita nihil.</p>
+              <p class="col-8">{{post.description}}</p>
 
 
             </div>
-            <p class="col-1">PRICE : <strong style="color: green;">35 DT</strong></p>
 
           </div>
           <hr>
-          <div class="d-flex ">
-            <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt="">
-            <div class="col-2 provider">
-              <h3>Dhia Amri</h3>
-              <h6>Tunis</h6>
-            </div>
-            <div class="description">
-              <p class="col-8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
-                voluptate
-                amet tempora placeat harum quis eum ut accusantium optio consequuntur veniam quam
-                molestias
-                voluptatem, cumque excepturi sapiente natus expedita nihil.</p>
-
-
-            </div>
-            <p class="col-1">PRICE : <strong style="color: green;">35 DT</strong></p>
-
-          </div>
-          <hr>
-          <div class="d-flex ">
-            <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt="">
-            <div class="col-2 provider">
-              <h3>Dhia Amri</h3>
-              <h6>Tunis</h6>
-            </div>
-            <div class="description">
-              <p class="col-8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
-                voluptate
-                amet tempora placeat harum quis eum ut accusantium optio consequuntur veniam quam
-                molestias
-                voluptatem, cumque excepturi sapiente natus expedita nihil.</p>
-
-
-            </div>
-            <p class="col-1">PRICE : <strong style="color: green;">35 DT</strong></p>
-
-          </div>
-          <hr>
+          {% endfor %}
+          
+          
 
 
 
@@ -491,28 +451,19 @@
             </div>
             <div class="modal-body">
               <div class="container mt-4">
-                <form>
+                <form method="post">
+                  {% csrf_token %}
                   <div class="form-group">
                     <label for="input1">Title : </label>
-                    <input type="text" class="form-control" id="input1" placeholder="Title">
+                    {{form.title}}
                   </div>
                   <div class="form-group">
                     <label for="dropdown">Categorie</label>
-                    <select class="form-control" id="dropdown">
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                      <option value="option3">Option 3</option>
-                      <option value="option4">Option 4</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="input2">Price in DT :
-                    </label>
-                    <input type="number" class="form-control" id="input2" placeholder="Your suggested Price in DT">
+                    {{form.post_category}}
                   </div>
                   <div class="form-group">
                     <label for="textarea">Description</label>
-                    <textarea class="form-control" id="textarea" rows="5" placeholder></textarea>
+                    {{form.description}}
                   </div>
                   <div class="modal-footer">
                     <button type="submit" class="btn" style="background-color: #F7882F; color: white;">Submit</button>

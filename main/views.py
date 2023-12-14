@@ -83,7 +83,17 @@ def dashboard(request):
         categories=Category.objects.all()
         providers=Provider.objects.all()
         client=is_client[0]
-        context={"client":client, "categories":categories, "providers":providers}
+        posts=Post.objects.filter(author_id=client.id)
+        if request.method== 'POST':
+            form = PostForm(request.POST)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author= client
+                post.save()
+                return redirect("/dashboard")
+        else :
+            form = PostForm()
+        context={"client":client, "categories":categories, "providers":providers, "form":form, "posts":posts}
         return render(request, 'main/client_dashboard.html', context=context)
     
     
@@ -96,10 +106,10 @@ def create_post(request):
             post = form.save(commit=False)
             post.author= request.user
             post.save()
-            return redirect("/home")
+            return redirect("/client_dashboard")
     else :
         form = PostForm()
-    return render (request, 'main/create_post.html', {"form": form})
+    return render (request, 'main/client_dashboard.html', {"form": form})
 
 @login_required
 def profile(request):
