@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect, HttpResponse
-from .forms import RegisterForm, PostForm,ReviewForm
+from .forms import RegisterForm, PostForm,ReviewForm,EditForm
 from .models import Client, Provider,City,User,Review,Category,Post,Request,Contact
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
@@ -122,11 +122,62 @@ def profile(request):
 
     if len(is_provider)>0 :
         context={"provider":is_provider[0]}
-        return render(request, 'main/provider_profile.html',context)
+        return render(request, 'main/provider_profile.html',context=context)
     
     if len(is_client)>0 :
         context={"client":is_client[0]}
-        return render(request, 'main/client_profile.html',context)
+        return render(request, 'main/client_profile.html',context=context)
+
+@login_required
+def edit_profile(request, id):
+    user_id = id
+    is_provider = Provider.objects.filter(user_id=user_id)
+    is_client = Client.objects.filter(user_id=user_id)
+    curr_user=User.objects.filter(id=user_id)
+    if len(is_provider) > 0:
+        form = EditForm(request.POST, request.FILES)
+        if request.method == 'POST' and form.is_valid():
+            p = Provider.objects.get(user_id=user_id)
+            u = User.objects.get (id=user_id)
+            u.first_name = request.POST["first_name"]
+            u.last_name = request.POST["last_name"]
+            p.city = City.objects.get(gov=request.POST["city"])
+            p.bio = request.POST["bio"]
+            p.category = Category.objects.get(title=request.POST["categories"])
+            p.phone = request.POST["phone"]
+            u.email = request.POST["email"]
+            p.image = request.FILES["image"]
+
+            p.save()
+            u.save()
+            return redirect("/profile")
+        else:
+            form=EditForm()
+            context = {"provider": is_provider[0], "form": form}
+            return render(request, 'main/provider_profile_edit.html', context=context)
+
+    elif len(is_client) > 0:
+        instance={"first_name":curr_user[0].first_name, "last_name":curr_user[0].last_name, "city":is_client[0].city, "phone":is_client[0].phone, "email":curr_user[0].email
+        
+    }
+        form = EditForm(request.POST, request.FILES)
+        if request.method == 'POST' and form.is_valid():
+            c = Client.objects.get(user_id=user_id)
+            u = User.objects.get(id=user_id)
+            u.first_name = request.POST["first_name"]
+            u.last_name = request.POST["last_name"]
+            c.city = City.objects.get(gov=request.POST["city"])
+            c.phone = request.POST["phone"]
+            u.email = request.POST["email"]
+            c.image = request.FILES["image"]
+
+            c.save()
+            u.save()
+            return redirect("/profile")
+        else:
+            form = EditForm()
+            context = {"client": is_client[0], "form": form}
+            return render(request, 'main/client_profile_edit.html', context=context)    
 
 @login_required
 def send_request(request, provider_id,client_id,post_id):

@@ -17,7 +17,6 @@ body{
 }
 
 
-
 .button-outline{
     color: #F7882F;
     border-color: #F7882F;
@@ -42,7 +41,10 @@ body{
     width: 250px;
 }
 
-
+.text-warning{
+        position: relative;
+        bottom: 20%;
+    }
 
 
 

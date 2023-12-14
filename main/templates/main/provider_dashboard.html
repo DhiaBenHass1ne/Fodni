@@ -26,7 +26,7 @@
         .sidebar {
             background-color: #F7882F;
             color: #fff;
-            height: 100vh;
+            height: 145vh;
             /* padding-right: 0; */
             border-radius: 20px;
         }
@@ -50,8 +50,7 @@
 
         .side-profile {
 
-            height: 100px;
-            width: 100px;
+            width: 150px;
             border: 2px solid white;
             text-align: center;
         }
@@ -74,6 +73,7 @@
             padding-top: 20px;
         }
 
+        
         /* .left{
             margin-left: -12px;
         } */
@@ -107,8 +107,9 @@
             margin-left: 0.4rem;
         }
 
-        a {
+        .top-elements>a {
             text-decoration: none;
+            
             color: black;
             text-underline-offset: none;
         }
@@ -131,6 +132,36 @@
         .element-z {
             order: 1
         }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            
+        }
+
+        .status{
+            display: flex;
+            justify-content: space-around;
+            margin: 50px;
+        }
+
+        .effect {
+      transition: box-shadow 0.5s ease;
+      transition: margin-bottom 0.3s ease;
+
+
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      margin-bottom: 20px;
+    }
+
+    .effect:hover {
+      box-shadow: 5px 8px 8px #F7882F;
+      margin-bottom: 30px;
+
+
+    }
     </style>
 </head>
 
@@ -154,7 +185,7 @@
                 </div>
 
                 <div class="profile">
-                    <img src="media/{{provider.image}}"
+                    <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
                         data-bs-toggle="dropdown" alt="Profile Picture" class="profile-pic">
                     <!-- Default dropstart button -->
                     <div class="btn-group dropstart">
@@ -179,22 +210,21 @@
             <aside class="col-lg-2 col-md-3 col-sm-4 sidebar">
                 <div class="aside-top text-center ">
                     <a href="/profile">
-                        <img src="media/{{provider.image}}"
+                        <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
                             alt="Profile Picture" class="side-profile">
                     </a>
                     <h1 class="m-3">{{provider.user.first_name}} {{provider.user.last_name}}</h1>
-                    <h2>{{provider.category.title}}</h2>
+                    <h4>{{provider.category.title}}</h4>
                 </div>
-                <div class="form-check form-switch">
-                    <label class="form-check-label col-10 " for="flexSwitchCheckChecked">Open For Requests</label>
-                    <input class="form-check-input " style="background-color: #6b7a8F" type="checkbox" role="switch"
-                        id="flexSwitchCheckChecked" checked>
+                <div class="status">
+                    <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off"
+                        checked>
+                    <label class="btn btn-outline-success" for="success-outlined">Available</label>
+                    <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+                    <label class="btn btn-outline-danger" for="danger-outlined">Busy</label>
                 </div>
-                <div class="form-check form-switch">
-                    <label class="form-check-label col-10" for="flexSwitchCheckChecked">Available/Busy</label>
-                    <input class="form-check-input " style="background-color: #6b7a8F" type="checkbox" role="switch"
-                        id="flexSwitchCheckChecked" checked>
-                </div>
+
+
                 <div class="accordion accordion-flush mt-5 left  " id="accordionFlushExample">
 
                     <div class="accordion-item">
@@ -221,29 +251,50 @@
                                 for this accordion, which is intended to
                                 demonstrate the <code>.accordion-flush</code>
                                 class. This is the third item's accordion
-                                body. Nothing more exciting happening here
-                                in terms of content, but just filling up the
-                                space to make it look, at least at first
-                                glance, a bit more representative of how
-                                this
+                               
                                 would look in a real-world application.</div>
                         </div>
                     </div>
                 </div>
-                <a href="/logout_view" class="btn btn-danger">Logout</a>
+                <!-- Button trigger modal -->
+                <a style="margin-top: 70px; margin-left: 100px; position: relative;" href="#" type="button"
+                    data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                    <img src="{% static 'assets/dash/logout.png' %}" style="width: 50px;" alt=""></a>
+
+
+
+                <!--  modal -->
+
+                <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
+                    aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-body buttons">
+                                <h4 style="color: black;">Are You Sure ? </h4>
+                                <div>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                    <a href="/logout_view" class="btn btn-danger">Logout</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </aside>
 
             <main class="col-lg-10 col-md-9 col-sm-8 content  ">
                 <div id="Jobs" class="maintabcontent">
 
-                    <h1 id="contact" class="offset-4">Searach For Job</h1>
+                    <!-- <h1 id="contact" class="offset-4">Searach For Job</h1> -->
                     <hr>
 
                     <div class="top-elements ">
                         {% for post in posts %}
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{post.id}}">
-                            <div class="d-flex">
-                                <img src="media/{{post.author.image}}" class="profile-pic"
+                            <div class="d-flex effect" style="align-items: center;">
+                                <img src="/media/{{post.author.image}}" style="width: 200px; border-radius: 20px;"
                                     alt>
                                 <div class="col-2 provider">
                                     <h3>{{post.author.user.first_name}} {{post.author.user.last_name}}</h3>
@@ -254,25 +305,24 @@
                                     <p class="col-8">{{post.description}}</p>
 
                                 </div>
-                                <p>(4.2)<img src="{% static 'assets/dash/star.png' %}" class="star" alt></p>
                             </div>
                         </a>
-                        <hr>
 
                         <div class="modal fade" id="modal{{post.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="container row col-12">
+                                <div class="modal-content"  >
+                                    <div class="container row col-12" >
                                         <div class="col-4 me-3">
-                                            <div class="container col-5 text-start ">
+                                            <div>
 
-                                                <img style
-                                                    src="media/{{post.author.image}}"
-                                                    class="profile-pic d-block row" alt>
+                                                <img style="width: 80px; border-radius: 5px;"
+                                                        src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
+                                                     alt>
 
                                             </div>
-                                            <p class="m-0 ms-2 font-weight-bold">{{post.author.user.first_name}} {{post.author.user.last_name}}</p>
+                                            <p class="m-0 ms-2 font-weight-bold">{{post.author.user.first_name}}
+                                                {{post.author.user.last_name}}</p>
                                             <div class="ms-2">
 
                                                 <p class="m-0 mt-2">Ratings :</p>
@@ -300,13 +350,14 @@
 
                                                 <p class="font-weight-bold">Description </p>
                                                 <p>{{post.description}}</p>
-
+                                                <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <a href="/request/{{provider.id}}/{{post.author.id}}/{{post.id}}"><button
+                                                    type="button" class="btn btn-primary"
+                                                    style="background-color:#F7882F;">I'm Available</button></a>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <a href="/request/{{provider.id}}/{{post.author.id}}/{{post.id}}"><button type="button" class="btn btn-primary"
-                                                    style="background-color:#F7882F;">I'm Available</button></a>
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -412,7 +463,8 @@
                                             <!-- {{Full_Name}} --><br>
 
                                         </td>
-                                        <td style="width:25%">{{request.client.user.first_name}} {{request.client.user.last_name}}</td>
+                                        <td style="width:25%">{{request.client.user.first_name}}
+                                            {{request.client.user.last_name}}</td>
                                         <td style="width:25%">{{request.created_at}}</td>
                                         <td style="width:25%">Waiting For Client... :c</td>
                                     </tr>
@@ -670,6 +722,22 @@
                         </div>
                     </div>
                 </div>
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body buttons">
+                                <h3>Are You Sure ? </h3>
+                                <div>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                    <a href="/logout_view" class="btn btn-danger">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

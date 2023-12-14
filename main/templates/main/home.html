@@ -3,18 +3,22 @@
 
 <head>
     {% load static %}
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '/css/home.css' %}">
+
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     
-    <title>Document</title>	
+    <title>Home Page</title>	
 </head>
+
 
 <body style='background-image: url(" {% static 'assets/home/background.svg' %} ");'>
 
@@ -34,34 +38,34 @@
                                 <a class="nav-link inactive-link fw-bolder fs-4" aria-current="page" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link inactive-link fw-bolder fs-4" href="#">Hire</a>
+                                <a class="nav-link inactive-link fw-bolder fs-4" href="#service1">Hire</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link inactive-link fw-bolder fs-4" href="#">Work</a>
+                                <a class="nav-link inactive-link fw-bolder fs-4" href="#service2">Work</a>
                             </li>
                             <li class="nav-item inactive-link" fw-bolder>
-                                <a class="nav-link inactive-link fw-bolder fs-4" href="#">About Us</a>
+                                <a class="nav-link inactive-link fw-bolder fs-4" href="#faq">About Us</a>
                             </li>
                         </ul>
                     </div>
                     <a class="btn btn-outline-success me-3 button-outline" href="/sign-up">Register</a>
-                    <a class="btn btn-outline-success button-outline" href="/login">Login</a>
+                    <a class="btn btn-outline-success button-outline" href="/login">Login</a>   
                 </div>
             </div>
         </nav>
         <div class="container-fluid first mt-5">
-            <div class="container">
-                <div class="row pt-5">
+            <div class="container mt-5 pt-5">
+                <div class="row mt-5 pt-5">
                     <div class="col">
                         <img src="{% static '/assets/home/fodni (2).png' %}" alt="logo" width="200px">
-                        <h4 class="mt-4 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea sequi
-                            hic inventore. Quod illum eos enim tenetur nesciunt corporis, sapiente accusamus aut sint
-                            similique ullam iusto, quaerat laboriosam nam est.</h4>
+                        <h4 class="mt-4 text-white">Fodni, meaning 'help me' in Tunisian, is not just a platform; it's a community-driven space where talent meets opportunity. Our platform links skilled service providers with clients seeking top-notch expertise.
+
+                        </h4>
                         <form class="d-flex mt-5 align-items-center d-sm-block d-md-block" role="search">
                             <label for="search-home" class="d-lg-block col-3 text-light">Look for a service:</label>
-                            <input class="form-control me-2" type="search" placeholder="Plumbing,Electricity,Moving..."
+                            <input class="form-control  " type="search" placeholder="Plumbing,Electricity,Moving..."
                                 aria-label="Search" name="search-home">
-                            <button class="btn btn-outline-success button-outline btn-light" type="submit"><i
+                            <button class="btn  btn-outline-success button-outline btn-light" type="submit"><i
                                     class="bi bi-search"></i></button>
                         </form>
                     </div>
@@ -69,77 +73,69 @@
                         <object data="{% static '/assets/home/people.svg' %}" width="600px"
                             class=" mt-5 me-5 d-sm-none d-md-block d-none d-sm-block"></object>
                     </div>
+                    <a href="#service1">
                     <div class="row mt-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="100" fill="#F7882F"
+
+                            <svg id="service1"   xmlns="http://www.w3.org/2000/svg" height="100" fill="#F7882F"
                             class="bi bi-arrow-bar-down mt-5" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
-                                d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6" />
+                            d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6" />
                         </svg>
                     </div>
+                </a>    
                 </div>
             </div>
         </div>
-        <div class="container-fluid first mt-5">
-            <div class="container">
+        <div class="container-fluid first mt-5 text-align-center" id="contactprov"  style="color: white;" >
+            <div class="container " >
                 <div class="row m-5">
-                    <h1 class="display-1 text-center text-light inactive-link"> Looking For Service ?</h1>
+                    <h1 class="display-1 text-center text-light inactive-link"> Need Professional Help ?</h1>
                 </div>
-                <div class="row">
-                    <div class="col">
+                <div class="row col-12 pb-5 mb-5">
+                    <div class="col-6">
+                        
                         <div class="row">
-                            <h1 class="display-5 text-center text-light">Post A Job</h1>
-                        </div>
-                        <div class="row d-flex">
-                            <div class="col">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <h1 class="display-5 text-center text-light pb-4">Post A Job Request</h1>
+                            <div class="row ">
+                                <p class="col-8" >Create a new client account or sign in with your account.</p>
+                                <i class="bi bi-key fs-1 text-warning align-top col-4  "></i>
                             </div>
-                            <div class="col">
-                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                            <div class="row ">
+                                <p class="col-8 align-center">Access to your requests in your dashboard.</p>
+                                <i class="bi bi-person fs-1 text-warning col-4" class="align-center"></i>
                             </div>
-                        </div>
-                        <div class="row d-flex">
-                            <div class="col">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                            <div class="col">
-                                <i class="bi bi-card-image fs-1 text-warning "></i>
-                            </div>
-                        </div>
-                        <div class="row d-flex">
-                            <div class="col">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                            <div class="col">
-                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                            <div class="row ">
+                                <p class="col-8 align-center">Submit a new request and get the help of a provider.</p>
+                                <i class="bi bi-envelope fs-1 text-warning col-4" class="align-center"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-6 ">
                         <div class="row">
-                            <h1 class="display-5 text-center text-light">Post A Job</h1>
+                            <h1 class="display-5 text-center pb-4 text-light">Contact a Provider</h1>
                         </div>
-                        <div class="row d-flex">
+                        <div class="row d-flex  ">
                             <div class="col-2">
-                                <i class="bi bi-card-image fs-1 text-warning "></i>
-                            </div>
-                            <div class="col-10">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                        </div>
-                        <div class="row d-flex">
-                            <div class="col-2">
-                                <i class="bi bi-card-image fs-1 text-warning "></i>
-                            </div>
-                            <div class="col-10">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                        </div>
-                        <div class="row d-flex">
-                            <div class="col-2">
-                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                                <i class="bi bi-key fs-1  text-warning "></i>
                             </div>
                             <div class="col-10 ">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                <p>Create a new client account or sign in with your account.</p>
+                            </div>
+                        </div>
+                        <div class="row d-flex ">
+                            <div class="col-2">
+                                <i class="bi bi-search fs-1 text-warning "></i>
+                            </div>
+                            <div class="col-10">
+                                <p>Search for a provider by category or type in the provider's detail.</p>
+                            </div>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col-2">
+                                <i class="bi bi-telephone fs-1 text-warning "></i>
+                            </div>
+                            <div class="col-10 ">
+                                <p>Contact your provider via contact info.</p>
                             </div>
                         </div>
                     </div>
@@ -147,19 +143,21 @@
                 <div class="row">
                     <button class="btn btn-outline-success button-outline">Register</button>
                 </div>
-                <div class="row mt-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="100" fill="#F7882F"
+                <a href="#service2">
+                <div   class="row mt-5">
+                        <svg   xmlns="http://www.w3.org/2000/svg" height="100" fill="#F7882F"
                         class="bi bi-arrow-bar-down mt-5" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6" />
-                    </svg>
+                        <path id="service2" fill-rule="evenodd"
+                        d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6" />
+                    </svg>    
                 </div>
+            </a>
             </div>
         </div>
-        <div class="container-fluid first mt-5">
-            <div class="container">
+        <div class="container-fluid first mt-5" >
+            <div class="container" style="color: white;">
                 <div class="row m-5">
-                    <h1 class="display-1 text-center text-light inactive-link"> Looking For Service ?</h1>
+                    <h1 class="display-1 text-center text-light inactive-link"> Looking For Clients ?</h1>
                 </div>
                 <div class="row">
                     <div class="col">
@@ -169,41 +167,44 @@
                     <div class="col">
                         <div class="row">
                             <div class="col-2">
-                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                                <i class="bi bi-key fs-1 text-warning "></i>
                             </div>
                             <div class="col-10 ">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                <p>Create a new provider account our sign in with your account.</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-2">
-                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                                <i class="bi bi-check fs-1 text-warning "></i>
                             </div>
                             <div class="col-10 ">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                <p>Chage your status to available to show up in clients feed.</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-2">
-                                <i class="bi bi-card-image fs-1 text-warning "></i>
+                                <i class="bi bi-search fs-1 text-warning "></i>
                             </div>
                             <div class="col-10 ">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                <p>Search for a Job directly in your dashboard and wait for client validation to begin working.</p>
                             </div>
                         </div>
                         <div class="row"><button class="btn btn-outline-success button-outline">Register</button></div>
                     </div>
                 </div>
+                <a href="#faq">
                 <div class="row mt-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="100" fill="#F7882F"
-                        class="bi bi-arrow-bar-down mt-5" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6" />
+                    
+                    <svg id="faq" xmlns="http://www.w3.org/2000/svg" height="100" fill="#F7882F"
+                    class="bi bi-arrow-bar-down mt-5" viewBox="0 0 16 16">
+                        <path  fill-rule="evenodd"
+                        d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5M8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6" />
                     </svg>
                 </div>
+            </a>
             </div>
         </div>
-        <div class="container-fluid first mt-5">
+        <div class="container-fluid first mt-5" >
             <div class="container">
                 <div class="row m-5">
                     <h1 class="display-1 text-center text-light inactive-link"> F.A.Q.</h1>
@@ -214,18 +215,15 @@
                             <h2 class="accordion-header">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Accordion Item #1
+                                    <strong>
+                                        What is Fodni?
+                                    </strong>
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <strong>This is the first item's accordion body.</strong> It is shown by default,
-                                    until the collapse plugin adds the appropriate classes that we use to style each
-                                    element. These classes control the overall appearance, as well as the showing and
-                                    hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                                    our default variables. It's also worth noting that just about any HTML can go within
-                                    the <code>.accordion-body</code>, though the transition does limit overflow.
+                                     Fodni is an online platform that connects service providers with clients, creating a marketplace for freelancers and businesses to collaborate on various projects.
                                 </div>
                             </div>
                         </div>
@@ -233,18 +231,17 @@
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    Accordion Item #2
+                                    <strong>
+                                        How does Fodni work for clients?
+                                    </strong>
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <strong>This is the second item's accordion body.</strong> It is hidden by default,
-                                    until the collapse plugin adds the appropriate classes that we use to style each
-                                    element. These classes control the overall appearance, as well as the showing and
-                                    hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                                    our default variables. It's also worth noting that just about any HTML can go within
-                                    the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    Clients can sign up, post their project details, and receive proposals from skilled freelancers. They can review profiles, chat with freelancers, and choose the best fit for their needs.
+
+
                                 </div>
                             </div>
                         </div>
@@ -252,45 +249,58 @@
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    Accordion Item #3
+                                    <strong>
+                                        How can I join as a freelancer?
+                                    </strong>
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
-                                    <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                                    until the collapse plugin adds the appropriate classes that we use to style each
-                                    element. These classes control the overall appearance, as well as the showing and
-                                    hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                                    our default variables. It's also worth noting that just about any HTML can go within
-                                    the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    Freelancers can create a profile showcasing their skills and expertise. Once verified, they can browse available projects, submit proposals, and collaborate with clients directly through our platform.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                                    <strong>
+                                        How does Fodni ensure the quality of services?
+                                    </strong>
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    We prioritize quality by implementing a review and rating system. Clients can leave feedback on freelancers, and freelancers can rate their experience with clients. This helps build a trustworthy and reliable community.
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-6">
+                <div class="row pt-5">
+                    <div class="col-7">
                         <h1 class="display-5 text-center text-light">Where you can find us.</h1>
-                        <div class="row">
-                        <div class="col-6"><img src="/WHCGy.png" alt="" id="map"></div>
-                        <div class="col-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum, odio!</div>
+                        <div class="row p-3">
+                        <div class="col-5"><img  src="../static/assets/home/WHCGy.png" alt="" id="map"></div>
+                        <div class="col-6" style="color: white;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum, odio!</div>
                     </div>
                     </div>
-                    <div class="col-6">
-                        <h1 class="display-5 text-center text-light">Contact</h1>
-                        <p>Phone : 22648835</p>
-                        <p>Email: d@d.com</p>
+                    <div class="col-5" style="color: white;">
+                        <h1 class="display-5 pb-3  text-light">Contact</h1>
+                            <p>Phone : 22648835</p>
+                            <p>Email: d@d.com</p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-3"><p class=" d-inline ">© 2023 Fodni. All Rights Reserved.</p></div>
+                <div class="row col-12">
+                    <!-- <div class="col-3"><p class=" d-inline ">© 2023 Fodni. All Rights Reserved.</p></div>
                     <div class="col-3"><a href="">Terms & Conditions</a></div>
-                    <div class="col-3"><a href="">Privacy Policy</a></div>
-                    <div class="col-2 text-center al">
-                        <a href=""><i class="bi bi-instagram text-warning fs-1"></i></a>
-                        <a href=""><i class="bi bi-facebook text-warning fs-1"></i></a>
-                        <a href=""><i class="bi bi-twitter text-warning fs-1"></i></a>
+                    <div class="col-3"><a href="">Privacy Policy</a></div> -->
+                    <div class="offset-5 col-3 text-center al">
+                        <a href=""><i class="bi bi-instagram text-warning fs-1 pe-4"></i></a>
+                        <a href=""><i class="bi bi-facebook text-warning fs-1 pe-4"></i></a>
+                        <a href=""><i class="bi bi-twitter text-warning fs-1 pe-4"></i></a>
                     </div>
                 </div>
             </div>
@@ -302,4 +312,4 @@
         crossorigin="anonymous"></script>
 </body>
 
-</html>
+</html> 

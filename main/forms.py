@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Post, Review, Category
+from .models import Post, Review, Category,City
 
 
 
@@ -26,6 +26,34 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["image","first_name","last_name","username","email","state","city","phone","password1","password2","is_provider","bio","categories"]
+
+class EditForm(forms.ModelForm):
+    first_name = forms.CharField(required=True)
+    last_name= forms.CharField(required=True)
+    city=forms.ChoiceField(required=False, choices=[])
+    phone=forms.CharField(required=True)
+    email=forms.CharField(required=True)
+    bio = forms.CharField(required=False)
+    categories = forms.ChoiceField(required=False, choices=[])
+    image = forms.ImageField()
+
+    def __init__(self, *args, **kwargs):
+        super(EditForm, self).__init__(*args, **kwargs)
+        self.fields['categories'].choices = self.get_categories()
+        self.fields['city'].choices = self.get_cities()
+
+
+    
+    def get_categories(self):
+        return [(category.title, category.title) for category in Category.objects.all()]
+    
+    def get_cities(self):
+        return [(city.gov, city.state) for city in City.objects.all()]
+
+    class Meta:
+        model = User
+        fields = ["image","first_name","last_name","email","city","phone","bio","categories"]
+        
 
 class PostForm(forms.ModelForm):
 
