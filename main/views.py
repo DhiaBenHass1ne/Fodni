@@ -113,7 +113,7 @@ def create_post(request):
 
 @login_required
 def profile(request):
-    user_id = request.user.id
+    user_id=request.user
     is_client=None
     is_provider=None
     is_provider=Provider.objects.filter(user_id=user_id)
@@ -121,12 +121,12 @@ def profile(request):
 
 
     if len(is_provider)>0 :
-        context={"provider":is_provider}
-        return render(request, 'main/profile_template_p.html',context)
+        context={"provider":is_provider[0]}
+        return render(request, 'main/provider_profile.html',context)
     
     if len(is_client)>0 :
-        context={"client":is_client}
-        return render(request, 'main/client_dashboard_c.html',context)
+        context={"client":is_client[0]}
+        return render(request, 'main/client_profile.html',context)
 
 @login_required
 def send_request(request, provider_id,client_id,post_id):
@@ -142,7 +142,6 @@ def send_contact(request, provider_id,client_id):
     curr_client=Client.objects.get(id=client_id)
     Contact.objects.create(provider=curr_provider, client=curr_client)
     return redirect ("/dashboard")
-
 
 # @login_required
 # def review_list(request):

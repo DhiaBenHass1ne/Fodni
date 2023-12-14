@@ -192,12 +192,12 @@
         </div>
 
         <div class="profile">
-          <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}" data-bs-toggle="dropdown"
+          <img src="media/{{client.image}}" data-bs-toggle="dropdown"
             alt="Profile Picture" class="profile-pic">
           <!-- Default dropstart button -->
           <div class="btn-group dropstart">
             <ul class="dropdown-menu">
-              <li><span class="dropdown-item-text">Profile</span></li>
+              <li><a href="/profile"><span class="dropdown-item-text">Profile</span></a></li>
               <hr>
               <li><a class="dropdown-item" href="#">Settings</a></li>
               <hr>
@@ -215,10 +215,10 @@
       <aside class="col-lg-2 col-md-3 col-sm-4 sidebar">
         <div class="aside-top text-center ">
           <a href="/profile">
-            <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}" alt="Profile Picture"
+            <img src="media/{{client.image}}" alt="Profile Picture"
               class="side-profile">
           </a>
-          <H1 class="m-3">Dhia Amri</H1>
+          <H1 class="m-3">{{client.user.first_name}} {{client.user.last_name}}</H1>
         </div>
         <div class="accordion accordion-flush mt-5 left  " id="accordionFlushExample">
 
@@ -354,7 +354,7 @@
           <hr>
           {% for post in posts %}
           <div class="d-flex ">
-            <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt="">
+            <img src="media/{{client.image}}" class="profile-pic" alt="">
             <div class="col-2 provider">
               <h3>{{post.title}}</h3>
               <h6>{{post.category}}</h6>
@@ -370,9 +370,6 @@
           {% endfor %}
           
           
-
-
-
         </div>
       </main>
 
@@ -420,8 +417,9 @@
 
             {% for provider in providers %}
             {% if provider.category.title == one_category.title and provider.city.gov == client.city.gov %}
+            <a href="" data-bs-toggle="modal" data-bs-target="#p{{provider.id}}">
           <div class="d-flex effect">
-            <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt="">
+            <img src="media/{{provider.image}}" class="profile-pic" alt="">
             <div class="col-2 provider">
               <h3>{{provider.user.first_name}} {{provider.user.last_name}} </h3>
               <h6>{{provider.city.gov}}</h6>
@@ -429,12 +427,41 @@
             <div class="description">
               <p class="col-8">
                 {{provider.bio}}
-
+              </p>
             </div>
             <p>(4.2)<img src="{% static 'assets/dash/star.png' %}" class="star" alt=""></p>
 
           </div>
+        </a>            
+        <div class="modal fade" id="p{{provider.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header ">
+                  <img src="media/{{provider.image}}" class="profile-pic" alt="">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">{{provider.user.first_name}} {{provider.user.last_name}} </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>profession :<strong> {{provider.category}}</strong></p>
+                  <p>Rating : <strong>(4.2)</strong><img src="assets/star.png" class="star" alt=""></p>
+                  <hr>
+                  <p>Gouvernorate : {{provider.city.gov}}</p>
+                  <p>Phone : {{provider.phone}} </p>
+                  <p>E-mail : {{provider.user.email}}</p>
+                  <p>Bio : {{provider.bio}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <a href="/contact">
+                    <button type="button" class="btn btn-primary">Contact</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
             {% endif %}
+
           {% endfor %}
 
         </div>
@@ -476,35 +503,7 @@
           </div>
         </div>
       </div>
-      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header ">
-              <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt="">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Dhia Amri</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>profession :<strong> Job Title</strong></p>
-              <p>Rating : <strong>(4.2)</strong><img src="assets/star.png" class="star" alt=""></p>
-              <hr>
-              <p>Address : Lorem ipsum dolor sit amet.</p>
-              <p>Phone : Lorem ipsum dolor sit amet.</p>
-              <p>E-mail : Lorem ipsum dolor sit amet.</p>
-              <p>Bio : Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur, adipisicing
-                elit.
-                Id!</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <a href="/contact">
-                <button type="button" class="btn btn-primary">Contact</button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
