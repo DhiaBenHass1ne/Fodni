@@ -154,7 +154,7 @@
                 </div>
 
                 <div class="profile">
-                    <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
+                    <img src="media/{{provider.image}}"
                         data-bs-toggle="dropdown" alt="Profile Picture" class="profile-pic">
                     <!-- Default dropstart button -->
                     <div class="btn-group dropstart">
@@ -179,7 +179,7 @@
             <aside class="col-lg-2 col-md-3 col-sm-4 sidebar">
                 <div class="aside-top text-center ">
                     <a href="/profile">
-                        <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
+                        <img src="media/{{provider.image}}"
                             alt="Profile Picture" class="side-profile">
                     </a>
                     <h1 class="m-3">{{provider.user.first_name}} {{provider.user.last_name}}</h1>
@@ -243,7 +243,7 @@
                         {% for post in posts %}
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{post.id}}">
                             <div class="d-flex">
-                                <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic"
+                                <img src="media/{{post.author.image}}" class="profile-pic"
                                     alt>
                                 <div class="col-2 provider">
                                     <h3>{{post.author.user.first_name}} {{post.author.user.last_name}}</h3>
@@ -268,7 +268,7 @@
                                             <div class="container col-5 text-start ">
 
                                                 <img style
-                                                    src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
+                                                    src="media/{{post.author.image}}"
                                                     class="profile-pic d-block row" alt>
 
                                             </div>
