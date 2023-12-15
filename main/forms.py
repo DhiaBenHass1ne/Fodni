@@ -61,10 +61,5 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ["title","description","post_category"]
 
-class ReviewForm(forms.ModelForm):
-    class Meta:
-        model = Review
-        fields = ['rating']
-        widgets = {
-            'rating': forms.NumberInput(attrs={'type': 'number', 'step': '0.1', 'min': '0', 'max': '5'}),
-        }
+class ReviewForm(forms.Form):
+    value = forms.ChoiceField(choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')], widget=forms.RadioSelect)

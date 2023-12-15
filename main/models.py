@@ -21,6 +21,12 @@ class Provider(models.Model):
     image = models.ImageField(upload_to='providers/', null=True)
     # active= models.BooleanField(default=True)
 
+    def save_average_review(self):
+        # Calculate the average review
+        average_review = Review.objects.filter(provider=self).aggregate(models.Avg('value'))['value__avg']
+        self.average_review = average_review
+        self.save()
+
 
     def __str__(self):
         return str(self.user)
@@ -53,13 +59,13 @@ class Post(models.Model):
     
 
 class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
     provider= models.ForeignKey(Provider, on_delete=models.CASCADE)
-    rating = models.FloatField() 
+    value = models.FloatField() 
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ['user', 'provider']
+        unique_together = ['client', 'provider']
         
     def __str__(self):
         return f'{self.user.username} - {self.rating} stars'

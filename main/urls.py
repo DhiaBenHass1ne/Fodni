@@ -22,7 +22,8 @@ urlpatterns = [
     path('request/<int:provider_id>/<int:client_id>/<int:post_id>',views.send_request, name= 'request'),
     path('contact/<int:provider_id>/<int:client_id>',views.send_contact, name= 'contact'),
     path('done/p/<int:job_id>',views.provider_done,name='provider_done'),
-    path('done/c/<int:job_id>',views.client_done,name='provider_done')
+    path('done/c/<int:job_id>',views.client_done,name='provider_done'),
+    path('review_provider/<int:provider_id>/<int:client_id>', views.review_provider, name='review_provider'),
 
 ]
 

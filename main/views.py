@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect, HttpResponse
+from django.shortcuts import render,redirect, HttpResponse, get_object_or_404
 from .forms import RegisterForm, PostForm,ReviewForm,EditForm
 from .models import Client, Provider,City,User,Review,Category,Post,Request,Contact,Accepted,Connected,Done
 from django.contrib.auth.decorators import login_required
@@ -258,22 +258,22 @@ def client_done(request,job_id):
         curr_job.client_done=True
         curr_job.save()
     return redirect('/dashboard')
-# @login_required
-# def review_list(request):
-#     reviews = Review.objects.all()
-#     return render(request, 'reviews/review_list.html', {'reviews': reviews})
 
-# @login_required
-# def add_review(request):
-#     if request.method == 'POST':
-#         form = ReviewForm(request.POST)
-#         if form.is_valid():
-#             review = form.save(commit=False)
-#             review.user = request.user
-#             review.provider=
-#             review.save()
-#             return redirect('review_list')
-#     else:
-#         form = ReviewForm()
 
-#     return render(request, 'reviews/add_review.html', {'form': form})
+@login_required
+def review_provider(request, provider_id,client_id):
+    provider = Provider.objects.get(id=provider_id)
+    client= Client.objects.get(id=client_id)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review_value = form.cleaned_data['value']
+            new_review = Review.objects.create(provider=provider, client=client, value=review_value)
+            new_review.save()
+            # Update the average review for the provider
+            provider.save_average_review()
+            return redirect('/dashboard')  # Redirect to the provider detail page
+    else:
+        form = ReviewForm()
+
+    return render(request, 'main/review_provider.html', {'provider': provider, 'form': form})
