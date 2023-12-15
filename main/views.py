@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, HttpResponse
 from .forms import RegisterForm, PostForm,ReviewForm,EditForm
-from .models import Client, Provider,City,User,Review,Category,Post,Request,Contact
+from .models import Client, Provider,City,User,Review,Category,Post,Request,Contact,Accepted,Connected,Done
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 
@@ -70,20 +70,34 @@ def dashboard(request):
     is_client=Client.objects.filter(user_id=user_id)
     if len(is_provider)>0 :
         posts=[]
+        request_id=[]
         provider=is_provider[0]
-        requests=Request.objects.filter(provider_id=provider.id)
+        all_contacts=Contact.objects.filter(provider_id=provider.id)
+        count_con=all_contacts.count()
+        requests=Request.objects.all()
+        all_accepted=Accepted.objects.filter(provider_id=provider.id)
+        
+        
+        for one_request in requests:
+            request_id.append(one_request.job_id)
         all_posts=Post.objects.all()
         for post in all_posts:
-            if post.author.city.gov == is_provider[0].city.gov and post.post_category.id == is_provider[0].category.id :
+            if post.author.city.gov == is_provider[0].city.gov and post.post_category.id == is_provider[0].category.id and post.id not in request_id :
                 posts.append(post)
-        context={"posts":posts,"provider":provider, "requests":requests}
+        context={"posts":posts,"provider":provider, "requests":requests, "all_contacts":all_contacts,"count_contacts":count_con, "all_accepted":all_accepted}
         return render(request, 'main/provider_dashboard.html', context=context)
     
     if len(is_client)>0 :
         categories=Category.objects.all()
         providers=Provider.objects.all()
         client=is_client[0]
+        all_requests=Request.objects.filter(client_id=client.id)
+        count_req=all_requests.count()
         posts=Post.objects.filter(author_id=client.id)
+        accepted_posts=Accepted.objects.filter(client_id=client.id)
+        accepted_id=[]
+        for one_accepted in accepted_posts:
+            accepted_id.append(one_accepted.job.id)
         if request.method== 'POST':
             form = PostForm(request.POST)
             if form.is_valid():
@@ -93,7 +107,7 @@ def dashboard(request):
                 return redirect("/dashboard")
         else :
             form = PostForm()
-        context={"client":client, "categories":categories, "providers":providers, "form":form, "posts":posts}
+        context={"client":client, "categories":categories, "providers":providers, "form":form, "posts":posts,"requests":all_requests,"count_req":count_req, "accepted_posts":accepted_posts,"accepted_ids":accepted_id}
         return render(request, 'main/client_dashboard.html', context=context)
     
     
@@ -194,6 +208,56 @@ def send_contact(request, provider_id,client_id):
     Contact.objects.create(provider=curr_provider, client=curr_client)
     return redirect ("/dashboard")
 
+
+@login_required
+def accept_provider(request,request_id):
+    curr_request= Request.objects.get(id=request_id)
+    Accepted.objects.create(client_id=curr_request.client.id, provider_id=curr_request.provider.id, job_id=curr_request.job.id)
+    curr_request.delete()
+    return redirect("/dashboard")
+
+
+@login_required
+def reject_provider(request,request_id):
+    curr_request=Request.objects.get(id=request_id)
+    curr_request.delete()
+    return redirect('/dashboard')
+
+@login_required
+def accept_client(request,contact_id):
+    curr_contact= Contact.objects.get(id=contact_id)
+    Connected.objects.create(client_id=curr_contact.client.id, provider_id=curr_contact.provider.id)
+    curr_contact.delete()
+    return redirect("/dashboard")
+
+
+@login_required
+def reject_client(request,contact_id):
+    curr_contact=Contact.objects.get(id=contact_id)
+    curr_contact.delete()
+    return redirect('/dashboard')
+
+@login_required
+def provider_done(request,job_id):
+    curr_job=Accepted.objects.get(job_id=job_id)
+    if curr_job.client_done==True:
+        Done.objects.create(job_id=job_id,provider_id=curr_job.provider.id, client_id=curr_job.client.id)
+        curr_job.delete()
+    else :
+        curr_job.provider_done=True
+        curr_job.save()
+    return redirect('/dashboard')
+
+@login_required
+def client_done(request,job_id):
+    curr_job=Accepted.objects.get(job_id=job_id)
+    if curr_job.provider_done==True:
+        Done.objects.create(job_id=job_id,provider_id=curr_job.provider.id, client_id=curr_job.client.id)
+        curr_job.delete()
+    else :
+        curr_job.client_done=True
+        curr_job.save()
+    return redirect('/dashboard')
 # @login_required
 # def review_list(request):
 #     reviews = Review.objects.all()

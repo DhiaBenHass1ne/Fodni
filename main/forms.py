@@ -48,7 +48,7 @@ class EditForm(forms.ModelForm):
         return [(category.title, category.title) for category in Category.objects.all()]
     
     def get_cities(self):
-        return [(city.gov, city.state) for city in City.objects.all()]
+        return [(city.gov, city.gov) for city in City.objects.all()]
 
     class Meta:
         model = User

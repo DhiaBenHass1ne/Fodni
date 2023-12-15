@@ -215,8 +215,8 @@
 
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link maintablinks" id="maindefault" onclick="mainTab(event, 'providers')" aria-current="page"
-                href="#">Providers</a>
+              <a class="nav-link maintablinks" id="maindefault" onclick="mainTab(event, 'providers')"
+                aria-current="page" href="#">Providers</a>
             </li>
             <li class="nav-item">
               <a class="nav-link maintablinks" onclick="mainTab(event, 'requests')" href="#">Requests</a>
@@ -256,27 +256,87 @@
           </a>
           <H1 class="m-3">{{client.user.first_name}} {{client.user.last_name}}</H1>
         </div>
+
         <div class="accordion accordion-flush mt-5 left  " id="accordionFlushExample">
-
-
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button d-block text-center collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                 Notifications
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{count_req}}
+                </span>
               </button>
             </h2>
             <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">Placeholder content
-                for this accordion, which is intended to
-                demonstrate the <code>.accordion-flush</code>
-                class. This is the third item's accordion
-                body. Nothing more exciting happening here
-                in terms of content, but just filling up the
-                space to make it look, at least at first
-                glance, a bit more representative of how
-                this
-                would look in a real-world application.</div>
+              <div class="accordion-body">
+                {% for one_request in requests %}
+                <div class="row">
+                  <div class="col"><a href="#" data-bs-toggle="modal"
+                    data-bs-target="#pendingstaticBackdrop">
+                    <p class="fw-bold mb-3 " style="font-size: 11px">
+                      - {{one_request.provider}} is available for <code>{{one_request.provider.category.title}}</code> request.
+                    </p>
+                   </a>
+                  </div>
+                </div>
+
+
+
+
+                <div class="modal fade" id="pendingstaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="container row col-12">
+                        <div class="col-4 me-3">
+                          <div class="container col-5 text-start ">
+
+                            <img style src="/media/{{one_request.provider.image}}"
+                              class="profile-pic d-block row" alt>
+
+                          </div>
+                          <p class="m-0 ms-2 font-weight-bold"> {{one_request.provider.user.first_name}} {{one_request.provider.user.last_name}}</p>
+                          <div class="ms-2">
+
+                            <p class="m-0 mt-2">Ratings :</p>
+                            <p class="m-0 ">(4.3)</p>
+                            <p class="m-0 mt-2">Phone :</p>
+                            <p class="m-0">{{one_request.provider.phone}}</p>
+                            <p class="m-0 mt-2">Governorate :</p>
+                            <p class="m-0"> {{one_request.provider.city.gov}}</p>
+                            <p class="m-0 mt-2">E-mail :</p>
+                            <p class="m-0"> {{one_request.provider.user.email}}</p>
+                            <p class="m-0 mt-5 font-weight-bold">Category :</p>
+                            <p class="m-0"> {{one_request.provider.category.title}}</p>
+                          </div>
+
+                        </div>
+                        <div class=" col-7">
+                          <div class=" modal-header ">
+
+                            <h1 class="modal-title fs-5  font-weight-bold" id="staticBackdropLabel">{{one_request.job.title}}
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+
+                            <p class="font-weight-bold">Provider Bio : </p>
+                            <p>{{one_request.provider.bio}}</p>
+
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <a href="/reject/{{one_request.id}}"><button type="button" class="btn btn-primary" style="background-color:#F7882F;">Reject</button></a>
+                        <a href="/accept/{{one_request.id}}"> <button type="button" class="btn btn-primary" style="background-color:#F7882F;">Hire</button> </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
             </div>
           </div>
 
@@ -437,6 +497,21 @@
           </div>
           <hr>
           {% for post in posts %}
+          {% if post.id in accepted_ids %}
+          <div class="requests d-flex " style="align-items: center;">
+            <img src="{% static 'assets/dash/avatars/Mechanic.png' %}" style="width: 100px;" class="col-2" alt="">
+            <div class="col-2 provider">
+              <h3>{{post.title}}</h3>
+              <h6>{{post.post_category.title}}</h6>
+            </div>
+            <div class="description col-6">
+              <p>Help is on the way ...</p>
+
+            </div>
+
+            <a href="/done/c/{{post.id}}" ><button class="btn btn-success me-2">Job Done</button></a>
+          </div>
+          {% else %}
           <div class="requests d-flex " style="align-items: center;">
             <img src="{% static 'assets/dash/avatars/Mechanic.png' %}" style="width: 100px;" class="col-2" alt="">
             <div class="col-2 provider">
@@ -451,6 +526,7 @@
             <a href="#" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"><img
                 src="{% static 'assets/dash/delete.png' %}" style="width: 50px; margin-right: 20px;" alt=""></a>
           </div>
+          {% endif %}
           {% endfor %}
 
 
@@ -541,7 +617,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <a href="/contact">
+                  <a href="/contact/{{provider.id}}/{{client.id}}">
                     <button type="button" class="btn btn-primary">Contact</button>
                   </a>
                 </div>

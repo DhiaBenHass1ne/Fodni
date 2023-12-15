@@ -73,7 +73,7 @@
             padding-top: 20px;
         }
 
-        
+
         /* .left{
             margin-left: -12px;
         } */
@@ -109,7 +109,7 @@
 
         .top-elements>a {
             text-decoration: none;
-            
+
             color: black;
             text-underline-offset: none;
         }
@@ -137,31 +137,31 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            
+
         }
 
-        .status{
+        .status {
             display: flex;
             justify-content: space-around;
             margin: 50px;
         }
 
         .effect {
-      transition: box-shadow 0.5s ease;
-      transition: margin-bottom 0.3s ease;
+            transition: box-shadow 0.5s ease;
+            transition: margin-bottom 0.3s ease;
 
 
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-      margin-bottom: 20px;
-    }
+            margin-bottom: 20px;
+        }
 
-    .effect:hover {
-      box-shadow: 5px 8px 8px #F7882F;
-      margin-bottom: 30px;
+        .effect:hover {
+            box-shadow: 5px 8px 8px #F7882F;
+            margin-bottom: 30px;
 
 
-    }
+        }
     </style>
 </head>
 
@@ -217,15 +217,103 @@
                     <h4>{{provider.category.title}}</h4>
                 </div>
                 <div class="status">
-                    <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off"
-                        checked>
+                    <input type="radio" class="btn-check" name="options-outlined" id="success-outlined"
+                        autocomplete="off" checked>
                     <label class="btn btn-outline-success" for="success-outlined">Available</label>
-                    <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+                    <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined"
+                        autocomplete="off">
                     <label class="btn btn-outline-danger" for="danger-outlined">Busy</label>
                 </div>
 
 
                 <div class="accordion accordion-flush mt-5 left  " id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button d-block text-center collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                aria-controls="flush-collapseThree">
+                                Notifications
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{count_contacts}}
+                                </span>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                {% for one_contact in all_contacts %}
+                                <div class="row">
+                                    <div class="col"><a href="#" data-bs-toggle="modal"
+                                            data-bs-target="#pendingstaticBackdrop">
+                                            <p class="fw-bold mb-3 " style="font-size: 11px">
+                                                - <code> {{one_contact.client.user.first_name}} {{one_contact.client.user.last_name}} </code> is trying to reach you.
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="modal fade" id="pendingstaticBackdrop" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="container row col-12">
+                                                <div class="col-4 me-3">
+                                                    <div class="container col-5 text-start ">
+
+                                                        <img style src="/media/{{one_contact.client.image}}"
+                                                            class="profile-pic d-block row" alt>
+
+                                                    </div>
+                                                    <p class="m-0 ms-2 font-weight-bold">
+                                                        {{one_contact.client.user.first_name}}
+                                                        {{one_contact.client.user.last_name}}</p>
+                                                    <div class="ms-2">
+
+                                                        <p class="m-0 mt-2">Ratings :</p>
+                                                        <p class="m-0 ">(4.3)</p>
+                                                        <p class="m-0 mt-2">Phone :</p>
+                                                        <p class="m-0">{{one_contact.client.phone}}</p>
+                                                        <p class="m-0 mt-2">Governorate :</p>
+                                                        <p class="m-0"> {{one_contact.client.city.gov}}</p>
+                                                        <p class="m-0 mt-2">E-mail :</p>
+                                                        <p class="m-0"> {{one_contact.client.user.email}}</p>
+                                                    </div>
+
+                                                </div>
+                                                <div class=" col-7">
+                                                    <div class=" modal-header ">
+
+                                                        <h1 class="modal-title fs-5  font-weight-bold"
+                                                            id="staticBackdropLabel">{{one_contact.job.title}}
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <a href="/reject/c/{{one_contact.id}}"><button type="button"
+                                                            class="btn btn-primary"
+                                                            style="background-color:#F7882F;">Reject</button></a>
+                                                    <a href="/accept/c/{{one_contact.id}}"> <button type="button"
+                                                            class="btn btn-primary"
+                                                            style="background-color:#F7882F;">Contact</button> </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="accordion-item">
                         <h2 class="accordion-header">
@@ -236,24 +324,6 @@
                             </button>
                         </h2>
 
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button d-block text-center collapsed" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                aria-controls="flush-collapseThree">
-                                Notifications
-                            </button>
-                        </h2>
-                        <div id="flush-collapseThree" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">Placeholder content
-                                for this accordion, which is intended to
-                                demonstrate the <code>.accordion-flush</code>
-                                class. This is the third item's accordion
-                               
-                                would look in a real-world application.</div>
-                        </div>
                     </div>
                 </div>
                 <!-- Button trigger modal -->
@@ -294,8 +364,7 @@
                         {% for post in posts %}
                         <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{post.id}}">
                             <div class="d-flex effect" style="align-items: center;">
-                                <img src="/media/{{post.author.image}}" style="width: 200px; border-radius: 20px;"
-                                    alt>
+                                <img src="/media/{{post.author.image}}" style="width: 200px; border-radius: 20px;" alt>
                                 <div class="col-2 provider">
                                     <h3>{{post.author.user.first_name}} {{post.author.user.last_name}}</h3>
                                     <h6>{{post.author.city.gov}}</h6>
@@ -311,14 +380,13 @@
                         <div class="modal fade" id="modal{{post.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
-                                <div class="modal-content"  >
-                                    <div class="container row col-12" >
+                                <div class="modal-content">
+                                    <div class="container row col-12">
                                         <div class="col-4 me-3">
                                             <div>
 
                                                 <img style="width: 80px; border-radius: 5px;"
-                                                        src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
-                                                     alt>
+                                                    src="/media/{{provider.image}}" alt>
 
                                             </div>
                                             <p class="m-0 ms-2 font-weight-bold">{{post.author.user.first_name}}
@@ -351,13 +419,13 @@
                                                 <p class="font-weight-bold">Description </p>
                                                 <p>{{post.description}}</p>
                                                 <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <a href="/request/{{provider.id}}/{{post.author.id}}/{{post.id}}"><button
-                                                    type="button" class="btn btn-primary"
-                                                    style="background-color:#F7882F;">I'm Available</button></a>
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <a href="/request/{{provider.id}}/{{post.author.id}}/{{post.id}}"><button
+                                                        type="button" class="btn btn-primary"
+                                                        style="background-color:#F7882F;">I'm Available</button></a>
                                             </div>
                                             <div class="modal-footer">
-                                               
+
                                             </div>
                                         </div>
                                     </div>
@@ -394,50 +462,76 @@
                                         <th style="width:25%">Job</th>
                                         <th style="width:25%">Client</th>
                                         <th style="width:25%">Start Date</th>
-                                        <th style="width:25%">Completed</th>
+                                        <th style="width:25%">Complete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    {% for accepted in all_accepted %}
                                     <tr style="width:100%">
                                         <td style="width:25%"><a href="#" data-bs-toggle="modal"
-                                                data-bs-target="#activestaticBackdrop">Giacomo Guilizzoni
+                                                data-bs-target="#activestaticBackdrop">{{accepted.job.title}}
                                                 <!-- {{Full_Name}} --></a>
                                         </td>
-                                        <td style="width:25%">40</td>
-                                        <td style="width:25%">Peldi</td>
-                                        <td style="width:25%"><input type="checkbox" id="checkbox1" name="checkbox1"
-                                                value="Option1" checked></td>
+                                        <td style="width:25%">{{accepted.client.user.first_name}} {{accepted.client.user.last_name}} </td>
+                                        <td style="width:25%">{{accepted.created_at}}</td>
+                                        <td style="width:25%" class="text-center"><a href="/done/p/{{accepted.job.id}}"> <button class="btn btn-success ">Job done</button></a> </td>
 
                                     </tr>
-                                    </a>
-                                    <tr style="width:100%">
-                                        <td style="width:25%">Marco Botton<br>
-                                            Tuttofare
-                                        </td>
-                                        <td style="width:25%">38</td>
-                                        <td style="width:25%"></td>
-                                        <td style="width:25%"><input type="checkbox" id="checkbox1" name="checkbox1"
-                                                value="Option1" checked></td>
-                                    </tr>
-                                    <tr style="width:100%">
-                                        <td style="width:25%">Mariah Maclachlan <br>
-                                            Better Half
-                                        </td>
-                                        <td style="width:25%">41</td>
-                                        <td style="width:25%">Patata</td>
-                                        <td style="width:25%"><input type="checkbox" id="checkbox1" name="checkbox1"
-                                                value="Option1" unchecked></td>
-                                    </tr>
-                                    <tr style="width:100%">
-                                        <td style="width:25%">Valerie Liberty<br>
-                                            Head Chef
-                                        </td>
-                                        <td style="width:25%"> : )</td>
-                                        <td style="width:25%">Val</td>
-                                        <td style="width:25%"><input type="checkbox" id="checkbox1" name="checkbox1"
-                                                value="Option1" checked></td>
-                                    </tr>
+                                    <div class="modal fade" id="activestaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="container row col-12">
+                            <div class="col-4 me-3">
+                                <div class="container col-5 text-start ">
+
+                                    <img style
+                                        src="/media/{{accepted.client.image}}"
+                                        class="profile-pic d-block row" alt>
+
+                                </div>
+                                <p class="m-0 ms-2 font-weight-bold">{{accepted.client.user.first_name}} {{accepted.client.user.last_name}}</p>
+                                <div class="ms-2">
+
+                                    <p class="m-0 mt-2">Ratings :</p>
+                                    <p class="m-0 ">(4.3)</p>
+                                    <p class="m-0 mt-2">Phone :</p>
+                                    <p class="m-0">{{accepted.client.phone}}</p>
+                                    <p class="m-0 mt-2">Governorate :</p>
+                                    <p class="m-0"> {{accepted.client.city.gov}}</p>
+                                    <p class="m-0 mt-2">E-mail :</p>
+                                    <p class="m-0"> {{accepted.client.user.email}}</p>
+                                </div>
+
+                            </div>
+                            <div class=" col-7">
+                                <div class=" modal-header ">
+
+                                    <h1 class="modal-title fs-5  font-weight-bold" id="staticBackdropLabel">{{accepted.job.title}}
+                                    </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <p class="font-weight-bold">Description </p>
+                                    <p> {{accepted.job.description}}</p>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" style="background-color:#F7882F;">Job
+                                        Done</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+                                    {% endfor %}
+                                    
                                 </tbody>
                             </table>
                         </section>
@@ -468,6 +562,7 @@
                                         <td style="width:25%">{{request.created_at}}</td>
                                         <td style="width:25%">Waiting For Client... :c</td>
                                     </tr>
+                                    
                                     {% endfor %}
                                 </tbody>
                             </table>
@@ -539,23 +634,23 @@
                                 <div class="container col-5 text-start ">
 
                                     <img style
-                                        src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
+                                        src="/media/{{accepted.client.image}}"
                                         class="profile-pic d-block row" alt>
 
                                 </div>
-                                <p class="m-0 ms-2 font-weight-bold">Achref Nejah</p>
+                                <p class="m-0 ms-2 font-weight-bold">{{accepted.client.user.first_name}} {{accepted.client.user.last_name}}</p>
                                 <div class="ms-2">
 
                                     <p class="m-0 mt-2">Ratings :</p>
                                     <p class="m-0 ">(4.3)</p>
                                     <p class="m-0 mt-2">Phone :</p>
-                                    <p class="m-0">12 345 678</p>
+                                    <p class="m-0">{{accepted.client.phone}}</p>
                                     <p class="m-0 mt-2">Governorate :</p>
-                                    <p class="m-0"> Tunis</p>
+                                    <p class="m-0"> {{accepted.client.city.gov}}</p>
                                     <p class="m-0 mt-2">E-mail :</p>
-                                    <p class="m-0"> test@test.tn</p>
+                                    <p class="m-0"> {{accepted.client.user.email}}</p>
                                     <p class="m-0 mt-5 font-weight-bold">Category :</p>
-                                    <p class="m-0"> Job Category</p>
+                                    <p class="m-0"> {{accepted.job.category.title}}</p>
                                 </div>
 
                             </div>

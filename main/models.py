@@ -19,6 +19,7 @@ class Provider(models.Model):
     bio = models.CharField(blank=True, null=True)
     category = models.ForeignKey('Category', related_name='provider_category', on_delete=models.CASCADE , blank=True, null=True)
     image = models.ImageField(upload_to='providers/', null=True)
+    # active= models.BooleanField(default=True)
 
 
     def __str__(self):
@@ -77,17 +78,26 @@ class Accepted(models.Model):
     provider= models.ForeignKey(Provider, on_delete=models.CASCADE)
     client= models.ForeignKey(Client, on_delete=models.CASCADE)
     job = models.ForeignKey(Post, on_delete=models.CASCADE)
+    client_done = models.BooleanField (default=False)
+    provider_done = models.BooleanField (default=False)
     created_at=models.DateTimeField(auto_now_add=True)
 
 class Done(models.Model):
     provider= models.ForeignKey(Provider, on_delete=models.CASCADE)
     client= models.ForeignKey(Client, on_delete=models.CASCADE)
     job = models.ForeignKey(Post, on_delete=models.CASCADE)
-    client_done = models.BooleanField (default=False)
-    provider_done = models.BooleanField (default=False)
+
     created_at=models.DateTimeField(auto_now_add=True)
 
 class Contact(models.Model):
+    provider= models.ForeignKey(Provider, on_delete=models.CASCADE)
+    client= models.ForeignKey(Client, on_delete=models.CASCADE)
+    created_at=models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['client', 'provider']
+
+class Connected(models.Model):
     provider= models.ForeignKey(Provider, on_delete=models.CASCADE)
     client= models.ForeignKey(Client, on_delete=models.CASCADE)
     created_at=models.DateTimeField(auto_now_add=True)
