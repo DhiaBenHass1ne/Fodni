@@ -26,9 +26,10 @@
         .sidebar {
             background-color: #F7882F;
             color: #fff;
-            height: 145vh;
+            height: 100vh;
             /* padding-right: 0; */
             border-radius: 20px;
+            
         }
 
         .profile-pic {
@@ -162,6 +163,9 @@
 
 
         }
+        .index{
+            z-index: 9999;
+        }
     </style>
 </head>
 
@@ -207,7 +211,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            <aside class="col-lg-2 col-md-3 col-sm-4 sidebar">
+            <aside class="col-lg-2 col-md-3 col-sm-4 sidebar sticky-top ">
                 <div class="aside-top text-center ">
                     <a href="/profile">
                         <img src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
@@ -327,16 +331,15 @@
                     </div>
                 </div>
                 <!-- Button trigger modal -->
-                <a style="margin-top: 70px; margin-left: 100px; position: relative;" href="#" type="button"
-                    data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                <a href="/logout_view" style=" margin-top: 10rem; margin-left: 37%;"  type="button" >
                     <img src="{% static 'assets/dash/logout.png' %}" style="width: 50px;" alt=""></a>
 
 
 
                 <!--  modal -->
 
-                <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
-                    aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <!-- <div class="modal fade index" id="exampleModalToggle" aria-hidden="true"
+                    aria-labelledby="exampleModalToggleLabel" tabindex="1">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
 
@@ -350,7 +353,7 @@
 
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </aside>
 
