@@ -477,28 +477,43 @@
             <h2 style="margin-top: 20px;">Contacts</h2>
           </div>
           <hr>
-
+          <!-- ACHREF ADDED THIS !!!!!!!!!!!!!!!!!!!!!! -->
+          {% for contact in accepted_contacts %}
           <div class="d-flex effect ">
             <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt="">
             <div class="col-2 provider">
-              <h3>Dhia Amri</h3>
-              <h6>Tunis</h6>
+              <h3>{{contact.provider.user.first_name}} {{contact.provider.user.last_name}} </h3>
+              <h6>{{contact.provider.city.gov}}</h6>
             </div>
-            <div class="description">
-              <p class="col-8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
-                voluptate
-                amet tempora placeat harum quis eum ut accusantium optio consequuntur veniam quam
-                molestias
-                voluptatem, cumque excepturi sapiente natus expedita nihil.</p>
-
+            <div class="description col-8">
+              <p class="">
+                {{contact.provider.bio}}
 
             </div>
-            <p class="col-1"><strong style="color: green;">PENDING</strong></p>
+            <p class="col-1"><strong style="color: green;">Accepted</strong></p>
 
           </div>
+            {% endfor %}
 
+            
+          {% for contact in contacts %}
+          <div class="d-flex effect ">
+            <img src="{% static 'assets/dash/pexels-malte-luk-2244746.jpg' %}" class="profile-pic" alt="">
+            <div class="col-2 provider">
+              <h3>{{contact.provider.user.first_name}} {{contact.provider.user.last_name}} </h3>
+              <h6>{{contact.provider.city.gov}}</h6>
+            </div>
+            <div class="description col-8">
+              <p class="">
+                {{contact.provider.bio}}
 
+            </div>
+            <p class="col-1"><strong style="color: green;">Pending</strong></p>
 
+          </div>
+            {% endfor %}
+
+        <!--  ACHRAF STOPS HERE !!!!!!! -->
 
         </div>
       </main>

@@ -222,7 +222,7 @@
                 </div>
                 <div class="status">
                     <input type="radio" class="btn-check" name="options-outlined" id="success-outlined"
-                        autocomplete="off" checked>
+                        autocomplete="off">
                     <label class="btn btn-outline-success" for="success-outlined">Available</label>
                     <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined"
                         autocomplete="off">
@@ -256,65 +256,12 @@
                                         </a>
                                     </div>
                                 </div>
-
-
-
-
-                                <div class="modal fade" id="pendingstaticBackdrop" data-bs-backdrop="static"
-                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="container row col-12">
-                                                <div class="col-4 me-3">
-                                                    <div class="container col-5 text-start ">
-
-                                                        <img style src="/media/{{one_contact.client.image}}"
-                                                            class="profile-pic d-block row" alt>
-
-                                                    </div>
-                                                    <p class="m-0 ms-2 font-weight-bold">
-                                                        {{one_contact.client.user.first_name}}
-                                                        {{one_contact.client.user.last_name}}</p>
-                                                    <div class="ms-2">
-
-                                                        <p class="m-0 mt-2">Ratings :</p>
-                                                        <p class="m-0 ">(4.3)</p>
-                                                        <p class="m-0 mt-2">Phone :</p>
-                                                        <p class="m-0">{{one_contact.client.phone}}</p>
-                                                        <p class="m-0 mt-2">Governorate :</p>
-                                                        <p class="m-0"> {{one_contact.client.city.gov}}</p>
-                                                        <p class="m-0 mt-2">E-mail :</p>
-                                                        <p class="m-0"> {{one_contact.client.user.email}}</p>
-                                                    </div>
-
-                                                </div>
-                                                <div class=" col-7">
-                                                    <div class=" modal-header ">
-
-                                                        <h1 class="modal-title fs-5  font-weight-bold"
-                                                            id="staticBackdropLabel">{{one_contact.job.title}}
-                                                        </h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <a href="/reject/c/{{one_contact.id}}"><button type="button"
-                                                            class="btn btn-primary"
-                                                            style="background-color:#F7882F;">Reject</button></a>
-                                                    <a href="/accept/c/{{one_contact.id}}"> <button type="button"
-                                                            class="btn btn-primary"
-                                                            style="background-color:#F7882F;">Contact</button> </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 {% endfor %}
+
+
+
+
+                               
                             </div>
                         </div>
                     </div>
@@ -692,71 +639,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="pendingstaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="container row col-12">
-                            <div class="col-4 me-3">
-                                <div class="container col-5 text-start ">
-
-                                    <img style
-                                        src="{% static 'assets/dash/cool-profile-picture-87h46gcobjl5e4xu.jpg' %}"
-                                        class="profile-pic d-block row" alt>
-
-                                </div>
-                                <p class="m-0 ms-2 font-weight-bold">Achref Nejah</p>
-                                <div class="ms-2">
-
-                                    <p class="m-0 mt-2">Ratings :</p>
-                                    <p class="m-0 ">(4.3)</p>
-                                    <p class="m-0 mt-2">Phone :</p>
-                                    <p class="m-0">12 345 678</p>
-                                    <p class="m-0 mt-2">Governorate :</p>
-                                    <p class="m-0"> Tunis</p>
-                                    <p class="m-0 mt-2">E-mail :</p>
-                                    <p class="m-0"> test@test.tn</p>
-                                    <p class="m-0 mt-5 font-weight-bold">Category :</p>
-                                    <p class="m-0"> Job Category</p>
-                                </div>
-
-                            </div>
-                            <div class=" col-7">
-                                <div class=" modal-header ">
-
-                                    <h1 class="modal-title fs-5  font-weight-bold" id="staticBackdropLabel">Job Title
-                                    </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <p class="font-weight-bold">Description </p>
-                                    <p> Lorem ipsum dolor sit
-                                        amet, consectetur adipisicing elit.
-                                        Excepturi similique ratione, sunt
-                                        iusto possimus harum perferendis
-                                        asperiores architecto a ea in rerum
-                                        magnam explicabo ullam veniam,
-                                        pariatur voluptatem quos quidem!
-                                        Molestiae voluptates vero maxime
-                                        molestias, fugit illo alias
-                                        distinctio odit! Voluptate debitis
-                                        fugit eveniet iste magni ullam c</p>
-
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" style="background-color:#F7882F;">Decline
-                                    Job</button>
-                                <button type="button" class="btn btn-primary" style="background-color:#F7882F;">Accept
-                                    Job</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
             <div class="modal fade" id="completedstaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -839,6 +722,63 @@
             </div>
         </div>
     </div>
+    {% for one_contact in all_contacts %}
+
+    <div class="modal fade" id="pendingstaticBackdrop" data-bs-backdrop="static"
+        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="container row col-12">
+                    <div class="col-4 me-3">
+                        <div class="container col-5 text-start ">
+
+                            <img style src="/media/{{one_contact.client.image}}"
+                                class="profile-pic d-block row" alt>
+
+                        </div>
+                        <p class="m-0 ms-2 font-weight-bold">
+                            {{one_contact.client.user.first_name}}
+                            {{one_contact.client.user.last_name}}</p>
+                        <div class="ms-2">
+
+                            <p class="m-0 mt-2">Ratings :</p>
+                            <p class="m-0 ">(4.3)</p>
+                            <p class="m-0 mt-2">Phone :</p>
+                            <p class="m-0">{{one_contact.client.phone}}</p>
+                            <p class="m-0 mt-2">Governorate :</p>
+                            <p class="m-0"> {{one_contact.client.city.gov}}</p>
+                            <p class="m-0 mt-2">E-mail :</p>
+                            <p class="m-0"> {{one_contact.client.user.email}}</p>
+                        </div>
+
+                    </div>
+                    <div class=" col-7">
+                        <div class=" modal-header ">
+
+                            <h1 class="modal-title fs-5  font-weight-bold"
+                                id="staticBackdropLabel">{{one_contact.job.title}}
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Close</button>
+                        <a href="/reject/c/{{one_contact.id}}"><button type="button"
+                                class="btn btn-primary"
+                                style="background-color:#F7882F;">Reject</button></a>
+                        <a href="/accept/c/{{one_contact.id}}"> <button type="button"
+                                class="btn btn-primary"
+                                style="background-color:#F7882F;">Contact</button> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 

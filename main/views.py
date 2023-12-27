@@ -90,7 +90,13 @@ def dashboard(request):
     if len(is_client)>0 :
         categories=Category.objects.all()
         providers=Provider.objects.all()
+
         client=is_client[0]
+        # *************************************** I ADDED THIS *********************************************************
+        contacts=Contact.objects.filter(client_id=client.id)
+        accepted_contacts = Connected.objects.filter(client_id=client.id)
+        #  I ADDED CONATCTS TO THE CONTEXT
+        # *************************************** I ADDED THIS *********************************************************
         all_requests=Request.objects.filter(client_id=client.id)
         count_req=all_requests.count()
         posts=Post.objects.filter(author_id=client.id)
@@ -107,7 +113,7 @@ def dashboard(request):
                 return redirect("/dashboard")
         else :
             form = PostForm()
-        context={"client":client, "categories":categories, "providers":providers, "form":form, "posts":posts,"requests":all_requests,"count_req":count_req, "accepted_posts":accepted_posts,"accepted_ids":accepted_id}
+        context={"client":client, "categories":categories, "providers":providers, "form":form, "posts":posts,"requests":all_requests,"count_req":count_req, "accepted_posts":accepted_posts,"accepted_ids":accepted_id, "contacts":contacts, "accepted_contacts":accepted_contacts }
         return render(request, 'main/client_dashboard.html', context=context)
     
     

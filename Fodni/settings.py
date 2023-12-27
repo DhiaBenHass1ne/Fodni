@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'Fodni.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fodni_db',
+        'NAME': 'fodhni',
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': 'localhost',

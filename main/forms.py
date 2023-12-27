@@ -62,4 +62,4 @@ class PostForm(forms.ModelForm):
         fields = ["title","description","post_category"]
 
 class ReviewForm(forms.Form):
-    value = forms.ChoiceField(choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')], widget=forms.RadioSelect)
+    value = forms.ChoiceField(choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')], widget=forms.RadioSelect(attrs={'class': 'form-check-input'}))

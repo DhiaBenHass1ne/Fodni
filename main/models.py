@@ -19,7 +19,7 @@ class Provider(models.Model):
     bio = models.CharField(blank=True, null=True)
     category = models.ForeignKey('Category', related_name='provider_category', on_delete=models.CASCADE , blank=True, null=True)
     image = models.ImageField(upload_to='providers/', null=True)
-    # active= models.BooleanField(default=True)
+    active= models.BooleanField(default=True)
 
     def save_average_review(self):
         # Calculate the average review
